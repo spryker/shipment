@@ -2,10 +2,10 @@
 
 namespace SprykerFeature\Zed\Shipment\Persistence\Propel;
 
-use SprykerFeature\Zed\Shipment\Persistence\Propel\Base\SpyShipmentCarrier as BaseSpyShipmentCarrier;
+use Orm\Zed\Shipment\Persistence\Base\SpyShipmentMethod as BaseSpyShipmentMethod;
 
 /**
- * Skeleton subclass for representing a row from the 'spy_shipment_carrier' table.
+ * Skeleton subclass for representing a row from the 'spy_shipment_method' table.
  *
  *
  *
@@ -13,7 +13,7 @@ use SprykerFeature\Zed\Shipment\Persistence\Propel\Base\SpyShipmentCarrier as Ba
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  */
-class SpyShipmentCarrier extends BaseSpyShipmentCarrier
+abstract class AbstractSpyShipmentMethod extends BaseSpyShipmentMethod
 {
 
 }
