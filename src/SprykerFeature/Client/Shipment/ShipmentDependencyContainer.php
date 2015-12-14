@@ -4,14 +4,14 @@
  * (c) Spryker Systems GmbH copyright protected
  */
 
-namespace SprykerFeature\Client\Shipment\Service;
+namespace SprykerFeature\Client\Shipment;
 
-use SprykerFeature\Client\Shipment\Service\Zed\ShipmentStub;
-use SprykerEngine\Client\Kernel\Service\AbstractServiceDependencyContainer;
-use SprykerFeature\Client\Shipment\Service\Zed\ShipmentStubInterface;
+use SprykerFeature\Client\Shipment\Zed\ShipmentStub;
+use SprykerEngine\Client\Kernel\AbstractDependencyContainer;
+use SprykerFeature\Client\Shipment\Zed\ShipmentStubInterface;
 use SprykerFeature\Client\Shipment\ShipmentDependencyProvider;
 
-class ShipmentDependencyContainer extends AbstractServiceDependencyContainer
+class ShipmentDependencyContainer extends AbstractDependencyContainer
 {
 
     /**

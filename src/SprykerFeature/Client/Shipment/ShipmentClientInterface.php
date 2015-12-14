@@ -4,12 +4,12 @@
  * (c) Spryker Systems GmbH copyright protected
  */
 
-namespace SprykerFeature\Client\Shipment\Service\Zed;
+namespace SprykerFeature\Client\Shipment;
 
 use Generated\Shared\Transfer\ShipmentTransfer;
 use Generated\Shared\Transfer\ShipmentMethodAvailabilityTransfer;
 
-interface ShipmentStubInterface
+interface ShipmentClientInterface
 {
 
     /**
