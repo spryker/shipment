@@ -15,7 +15,7 @@ use Spryker\Zed\Shipment\ShipmentDependencyProvider;
 /**
  * @method ShipmentQueryContainerInterface getQueryContainer()
  */
-class ShipmentDependencyContainer extends AbstractBusinessFactory
+class ShipmentBusinessFactory extends AbstractBusinessFactory
 {
 
     /**

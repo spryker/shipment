@@ -11,7 +11,7 @@ use Spryker\Client\Kernel\AbstractFactory;
 use Spryker\Client\Shipment\Zed\ShipmentStubInterface;
 use Spryker\Client\Shipment\ShipmentDependencyProvider;
 
-class ShipmentDependencyContainer extends AbstractFactory
+class ShipmentFactory extends AbstractFactory
 {
 
     /**

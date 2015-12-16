@@ -17,7 +17,7 @@ use Spryker\Zed\Tax\Persistence\TaxQueryContainerInterface;
 /**
  * @method ShipmentQueryContainer getQueryContainer()
  */
-class ShipmentDependencyContainer extends AbstractCommunicationFactory
+class ShipmentCommunicationFactory extends AbstractCommunicationFactory
 {
 
     /**
