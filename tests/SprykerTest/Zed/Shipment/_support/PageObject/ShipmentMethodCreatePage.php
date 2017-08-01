@@ -5,9 +5,9 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace Acceptance\Shipment\Zed\PageObject;
+namespace SprykerTest\Zed\Shipment\PageObject;
 
-class ShipmentMethodAddPage
+class ShipmentMethodCreatePage
 {
 
     const URL = '/shipment/method/add';
