@@ -5,17 +5,18 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\Shipment\Presentation;
+namespace SprykerTest\Zed\Shipment\Communication\Controller;
 
 use SprykerTest\Zed\Shipment\PageObject\ShipmentCarrierAddPage;
-use SprykerTest\Zed\Shipment\ShipmentPresentationTester;
+use SprykerTest\Zed\Shipment\ShipmentCommunicationTester;
 
 /**
  * Auto-generated group annotations
  * @group SprykerTest
  * @group Zed
  * @group Shipment
- * @group Presentation
+ * @group Communication
+ * @group Controller
  * @group ShipmentCarrierCreateCest
  * Add your own group annotations below this line
  */
@@ -23,14 +24,13 @@ class ShipmentCarrierCreateCest
 {
 
     /**
-     * @param \SprykerTest\Zed\Shipment\ShipmentPresentationTester $i
+     * @param \SprykerTest\Zed\Shipment\ShipmentCommunicationTester $i
      *
      * @return void
      */
-    public function breadcrumbIsVisible(ShipmentPresentationTester $i)
+    public function breadcrumbIsVisible(ShipmentCommunicationTester $i)
     {
         $i->amOnPage(ShipmentCarrierAddPage::URL);
-
         $i->seeBreadcrumbNavigation('Dashboard / Shipment / Shipment Carrier / Create new Shipment Carrier');
     }
 
