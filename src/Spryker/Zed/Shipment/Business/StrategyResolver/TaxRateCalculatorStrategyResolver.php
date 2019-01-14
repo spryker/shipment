@@ -7,9 +7,9 @@
 namespace Spryker\Zed\Shipment\Business\StrategyResolver;
 
 use Generated\Shared\Transfer\QuoteTransfer;
+use Spryker\Service\Shipment\ShipmentServiceInterface;
 use Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException;
 use Spryker\Zed\Shipment\Business\Calculator\CalculatorInterface;
-use Spryker\Zed\Shipment\Dependency\Service\ShipmentToSalesServiceInterface;
 
 /**
  * @deprecated Remove strategy resolver after multiple shipment will be released.
@@ -22,17 +22,17 @@ class TaxRateCalculatorStrategyResolver implements TaxRateCalculatorStrategyReso
     protected $service;
 
     /**
-     * @var \Spryker\Zed\Sales\Business\Order\SalesOrderSaverInterface[]
+     * @var \Spryker\Zed\Shipment\Business\Calculator\CalculatorInterface[]
      */
     protected $strategyContainer;
 
     /**
      * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
-     * @param \Spryker\Zed\Shipment\Dependency\Service\ShipmentToSalesServiceInterface $service
+     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $service
      * @param array|\Spryker\Zed\Shipment\Business\Calculator\CalculatorInterface[] $strategyContainer
      */
-    public function __construct(ShipmentToSalesServiceInterface $service, array $strategyContainer)
+    public function __construct(ShipmentServiceInterface $service, array $strategyContainer)
     {
         $this->service = $service;
         $this->strategyContainer = $strategyContainer;
