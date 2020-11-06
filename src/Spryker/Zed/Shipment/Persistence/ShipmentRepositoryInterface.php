@@ -17,4 +17,11 @@ interface ShipmentRepositoryInterface
      * @return bool
      */
     public function isShipmentMethodUniqueForCarrier(ShipmentMethodTransfer $shipmentMethodTransfer): bool;
+
+    /**
+     * @param string $shipmentMethodName
+     *
+     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
+     */
+    public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer;
 }

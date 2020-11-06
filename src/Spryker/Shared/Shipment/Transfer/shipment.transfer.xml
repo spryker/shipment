@@ -29,6 +29,7 @@
         <property name="prices" type="MoneyValue[]" singular="price" />
         <property name="storeCurrencyPrice" type="int" />
         <property name="currencyIsoCode" type="string" />
+        <property name="storeRelation" type="StoreRelation"/>
     </transfer>
 
     <transfer name="Order">
@@ -121,6 +122,23 @@
     <transfer name="CalculableObject">
         <property name="expenses" type="Expense[]" singular="expense"/>
         <property name="originalQuote" type="Quote" />
+    </transfer>
+
+    <transfer name="Currency">
+        <property name="idCurrency" type="int"/>
+        <property name="code" type="string"/>
+    </transfer>
+
+    <transfer name="Store">
+        <property name="idStore" type="int"/>
+        <property name="selectedCurrencyIsoCode" type="string"/>
+        <property name="name" type="string"/>
+    </transfer>
+
+    <transfer name="StoreRelation">
+        <property name="idEntity" type="int"/>
+        <property name="idStores" type="int[]" singular="idStores"/>
+        <property name="stores" type="Store[]" singular="stores"/>
     </transfer>
 
 </transfers>
