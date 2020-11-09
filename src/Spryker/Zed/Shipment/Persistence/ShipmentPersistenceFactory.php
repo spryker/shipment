@@ -25,7 +25,6 @@ use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentSalesOrderItemMapper;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentSalesOrderItemMapperInterface;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentTaxSetMapper;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentTaxSetMapperInterface;
-use Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper;
 
 /**
  * @method \Spryker\Zed\Shipment\ShipmentConfig getConfig()
@@ -96,15 +95,7 @@ class ShipmentPersistenceFactory extends AbstractPersistenceFactory
      */
     public function createShipmentMethodMapper(): ShipmentMethodMapperInterface
     {
-        return new ShipmentMethodMapper($this->createStoreRelationMapper());
-    }
-
-    /**
-     * @return \Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper
-     */
-    public function createStoreRelationMapper(): StoreRelationMapper
-    {
-        return new StoreRelationMapper();
+        return new ShipmentMethodMapper();
     }
 
     /**

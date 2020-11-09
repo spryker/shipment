@@ -12,27 +12,12 @@ use Generated\Shared\Transfer\CurrencyTransfer;
 use Generated\Shared\Transfer\MoneyValueTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Generated\Shared\Transfer\ShipmentPriceTransfer;
-use Generated\Shared\Transfer\StoreRelationTransfer;
-use Generated\Shared\Transfer\StoreTransfer;
 use Orm\Zed\Currency\Persistence\SpyCurrency;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethod;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice;
 
 class ShipmentMethodMapper implements ShipmentMethodMapperInterface
 {
-    /**
-     * @var \Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper
-     */
-    protected $storeRelationMapper;
-
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper $storeRelationMapper
-     */
-    public function __construct(StoreRelationMapper $storeRelationMapper)
-    {
-        $this->storeRelationMapper = $storeRelationMapper;
-    }
-
     /**
      * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
      * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
@@ -76,14 +61,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         $shipmentMethodTransfer = $shipmentMethodTransfer->fromArray($salesShipmentMethodEntity->toArray(), true);
         $shipmentMethodTransfer->setCarrierName($salesShipmentMethodEntity->getShipmentCarrier()->getName());
         $shipmentMethodTransfer->setPrices($this->getPriceCollection($salesShipmentMethodEntity));
-        $storeRelationTransfer = new StoreRelationTransfer();
-        $storeRelationTransfer->setIdEntity($salesShipmentMethodEntity->getIdShipmentMethod());
-        $shipmentMethodTransfer->setStoreRelation(
-            $this->storeRelationMapper->mapShipmentMethodStoreEntitiesToStoreRelationTransfer(
-                $salesShipmentMethodEntity->getShipmentMethodStores(),
-                $storeRelationTransfer
-            )
-        );
 
         return $shipmentMethodTransfer;
     }
