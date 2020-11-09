@@ -113,12 +113,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         );
         $moneyValueTransfer->setCurrency($currencyTransfer);
 
-        $storeTransfer = $this->storeRelationMapper->mapStoreEntityToStoreTransfer(
-            $shipmentMethodPriceEntity->getStore(),
-            new StoreTransfer()
-        );
-        $moneyValueTransfer->setStore($storeTransfer);
-
         return $moneyValueTransfer;
     }
 
