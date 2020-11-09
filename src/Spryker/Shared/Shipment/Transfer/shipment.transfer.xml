@@ -130,7 +130,6 @@
 
     <transfer name="Store">
         <property name="idStore" type="int"/>
-        <property name="selectedCurrencyIsoCode" type="string"/>
         <property name="name" type="string"/>
     </transfer>
 
