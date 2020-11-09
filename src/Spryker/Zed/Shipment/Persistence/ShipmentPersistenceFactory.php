@@ -60,14 +60,6 @@ class ShipmentPersistenceFactory extends AbstractPersistenceFactory
      */
     public function createShipmentMethodMapper(): ShipmentMethodMapperInterface
     {
-        return new ShipmentMethodMapper($this->createStoreRelationMapper());
-    }
-
-    /**
-     * @return \Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper
-     */
-    public function createStoreRelationMapper(): StoreRelationMapper
-    {
-        return new StoreRelationMapper();
+        return new ShipmentMethodMapper();
     }
 }

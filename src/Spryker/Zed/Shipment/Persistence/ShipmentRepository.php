@@ -70,7 +70,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->joinWithShipmentMethodPrice()
                 ->useShipmentMethodPriceQuery()
                     ->joinWithCurrency()
-                    ->joinWithStore()
                 ->endUse()
             ->leftJoinWithShipmentCarrier();
     }
