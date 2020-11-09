@@ -13,6 +13,7 @@ use Generated\Shared\Transfer\MoneyValueTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Generated\Shared\Transfer\ShipmentPriceTransfer;
 use Generated\Shared\Transfer\StoreRelationTransfer;
+use Generated\Shared\Transfer\StoreTransfer;
 use Orm\Zed\Currency\Persistence\SpyCurrency;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethod;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice;
