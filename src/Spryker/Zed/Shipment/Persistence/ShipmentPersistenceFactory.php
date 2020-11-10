@@ -7,13 +7,19 @@
 
 namespace Spryker\Zed\Shipment\Persistence;
 
+use Orm\Zed\Sales\Persistence\SpySalesOrderItemQuery;
 use Orm\Zed\Sales\Persistence\SpySalesShipmentQuery;
 use Orm\Zed\Shipment\Persistence\SpyShipmentCarrierQuery;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPriceQuery;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
+use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentExpenseMapper;
+use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentExpenseMapperInterface;
+use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentMapper;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentMethodMapper;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentMethodMapperInterface;
+use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentOrderMapper;
+use Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentOrderMapperInterface;
 use Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper;
 
 /**
@@ -61,5 +67,37 @@ class ShipmentPersistenceFactory extends AbstractPersistenceFactory
     public function createShipmentMethodMapper(): ShipmentMethodMapperInterface
     {
         return new ShipmentMethodMapper();
+    }
+
+    /**
+     * @return \Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentMapper
+     */
+    public function createShipmentMapper(): ShipmentMapper
+    {
+        return new ShipmentMapper();
+    }
+
+    /**
+     * @return \Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentOrderMapperInterface
+     */
+    public function createShipmentOrderMapper(): ShipmentOrderMapperInterface
+    {
+        return new ShipmentOrderMapper();
+    }
+
+    /**
+     * @return \Spryker\Zed\Shipment\Persistence\Propel\Mapper\ShipmentExpenseMapperInterface
+     */
+    public function createShipmentExpenseMapper(): ShipmentExpenseMapperInterface
+    {
+        return new ShipmentExpenseMapper();
+    }
+
+    /**
+     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItemQuery
+     */
+    public function createSalesOrderItemQuery(): SpySalesOrderItemQuery
+    {
+        return SpySalesOrderItemQuery::create();
     }
 }

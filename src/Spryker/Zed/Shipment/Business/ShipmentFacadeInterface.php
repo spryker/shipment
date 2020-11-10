@@ -13,6 +13,8 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\SaveOrderTransfer;
 use Generated\Shared\Transfer\ShipmentCarrierTransfer;
+use Generated\Shared\Transfer\ShipmentGroupResponseTransfer;
+use Generated\Shared\Transfer\ShipmentGroupTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethod;
 
@@ -282,6 +284,41 @@ interface ShipmentFacadeInterface
      * @return bool
      */
     public function isShipmentMethodUniqueForCarrier(ShipmentMethodTransfer $shipmentMethodTransfer): bool;
+
+    /**
+     * Specification:
+     * - Creates new or update existing shipment for specified order in Zed.
+     * - Uses shipment saving logic from the saveOrderShipment() method.
+     * - Adds shipment sales expenses to sales order according to quote level (BC) or item level shipments.
+     * - Expands shipment expense with a stack of ShipmentExpenseExpanderPluginInterface before shipment saving.
+     * - Creates or updates sales shipment.
+     * - Creates or updates sales shipping addresses.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\ShipmentGroupResponseTransfer
+     */
+    public function saveShipment(ShipmentGroupTransfer $shipmentGroupTransfer, OrderTransfer $orderTransfer): ShipmentGroupResponseTransfer;
+
+    /**
+     * Specification:
+     * - Creates new ShipmentGroupTransfer for specified order in Zed.
+     * - Uses shipment findShipmentMethodTransferById logic from the ShipmentReader class.
+     *
+     * @api
+     *
+     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
+     * @param bool[] $itemListUpdatedStatus
+     *
+     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
+     */
+    public function createShipmentGroupTransferWithListedItems(
+        ShipmentGroupTransfer $shipmentGroupTransfer,
+        array $itemListUpdatedStatus
+    ): ShipmentGroupTransfer;
 
     /**
      * Specification:

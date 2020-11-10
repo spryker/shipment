@@ -12,6 +12,8 @@ use Spryker\Zed\Kernel\Communication\Form\FormTypeInterface;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCurrencyBridge;
 use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToMoneyBridge;
+use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToPriceFacadeBridge;
+use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToSalesFacadeBridge;
 use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToStoreBridge;
 use Spryker\Zed\Shipment\Dependency\ShipmentToTaxBridge;
 use Spryker\Zed\Shipment\Exception\MissingMoneyCollectionFormTypePluginException;
@@ -31,9 +33,15 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
 
     public const FACADE_MONEY = 'FACADE_MONEY';
     public const FACADE_CURRENCY = 'FACADE_CURRENCY';
+    public const FACADE_SALES = 'FACADE_SALES';
     public const FACADE_STORE = 'FACADE_STORE';
     public const FACADE_TAX = 'FACADE_TAX';
+    public const FACADE_PRICE = 'FACADE_PRICE';
     public const SHIPMENT_METHOD_FILTER_PLUGINS = 'SHIPMENT_METHOD_FILTER_PLUGINS';
+
+    public const PLUGINS_SHIPMENT_EXPENSE_EXPANDER = 'PLUGINS_SHIPMENT_EXPENSE_EXPANDER';
+
+    public const SERVICE_SHIPMENT = 'SERVICE_SHIPMENT';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -54,6 +62,7 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addStoreFacade($container);
         $container = $this->addCurrencyFacade($container);
         $container = $this->addMoneyCollectionFormTypePlugin($container);
+        $container = $this->addShipmentService($container);
 
         $container[static::FACADE_TAX] = function (Container $container) {
             return new ShipmentToTaxBridge($container->getLocator()->tax()->facade());
@@ -144,6 +153,10 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addCurrencyFacade($container);
         $container = $this->addStoreFacade($container);
         $container = $this->addMethodFilterPlugins($container);
+        $container = $this->addShipmentService($container);
+        $container = $this->addPriceFacade($container);
+        $container = $this->addSalesFacade($container);
+        $container = $this->addShipmentExpenseExpanderPlugins($container);
 
         return $container;
     }
@@ -217,6 +230,71 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
      * @return \Spryker\Zed\Shipment\Dependency\Plugin\ShipmentMethodFilterPluginInterface[]
      */
     protected function getMethodFilterPlugins(Container $container)
+    {
+        return [];
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addShipmentService(Container $container): Container
+    {
+        $container->set(static::SERVICE_SHIPMENT, function (Container $container) {
+            return $container->getLocator()->shipment()->service();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addPriceFacade(Container $container): Container
+    {
+        $container->set(static::FACADE_PRICE, function (Container $container) {
+            return new ShipmentToPriceFacadeBridge($container->getLocator()->price()->facade());
+        });
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addSalesFacade(Container $container): Container
+    {
+        $container->set(static::FACADE_SALES, function (Container $container) {
+            return new ShipmentToSalesFacadeBridge($container->getLocator()->sales()->facade());
+        });
+
+        return $container;
+    }
+
+
+    /**
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
+     */
+    protected function addShipmentExpenseExpanderPlugins(Container $container): Container
+    {
+        $container->set(static::PLUGINS_SHIPMENT_EXPENSE_EXPANDER, function () {
+            return $this->getShipmentExpenseExpanderPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentExpenseExpanderPluginInterface[]
+     */
+    protected function getShipmentExpenseExpanderPlugins(): array
     {
         return [];
     }

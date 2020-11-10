@@ -7,6 +7,7 @@
 
 namespace Spryker\Zed\Shipment\Persistence;
 
+use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery;
 use Propel\Runtime\ActiveQuery\Criteria;
@@ -57,6 +58,27 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
                 $salesShipmentMethodEntity,
                 new ShipmentMethodTransfer()
             );
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @return \Generated\Shared\Transfer\ShipmentTransfer[]
+     */
+    public function findShipmentTransfersByOrder(OrderTransfer $orderTransfer): array
+    {
+        $salesOrderShipments = $this->getFactory()
+            ->createSalesShipmentQuery()
+            ->filterByFkSalesOrder($orderTransfer->getIdSalesOrder())
+            ->find();
+
+        if ($salesOrderShipments->count() === 0) {
+            return [];
+        }
+
+        return $this->getFactory()
+            ->createShipmentMapper()
+            ->mapShipmentEntitiesToShipmentTransfers($salesOrderShipments, []);
     }
 
     /**

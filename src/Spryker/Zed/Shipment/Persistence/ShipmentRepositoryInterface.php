@@ -7,6 +7,7 @@
 
 namespace Spryker\Zed\Shipment\Persistence;
 
+use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface ShipmentRepositoryInterface
@@ -24,4 +25,13 @@ interface ShipmentRepositoryInterface
      * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
      */
     public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer;
+
+    /**
+     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
+     *
+     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
+     *
+     * @return \Generated\Shared\Transfer\ShipmentTransfer[]
+     */
+    public function findShipmentTransfersByOrder(OrderTransfer $orderTransfer): array;
 }
