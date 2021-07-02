@@ -9,7 +9,6 @@ namespace Spryker\Service\Shipment\ShipmentHash;
 
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Generated\Shared\Transfer\ShipmentTransfer;
-use Spryker\Service\Shipment\Dependency\Service\ShipmentToCustomerServiceInterface;
 use Spryker\Service\Shipment\Dependency\Service\ShipmentToUtilEncodingServiceInterface;
 use Spryker\Service\Shipment\ShipmentConfig;
 
@@ -17,10 +16,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
 {
     protected const SHIPMENT_TRANSFER_KEY_PATTERN = '%s-%s-%s-%s';
 
-    /**
-     * @var \Spryker\Service\Shipment\Dependency\Service\ShipmentToCustomerServiceInterface
-     */
-    protected $customerService;
 
     /**
      * @var \Spryker\Service\Shipment\ShipmentConfig
@@ -33,16 +28,13 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
     protected $utilEncodingService;
 
     /**
-     * @param \Spryker\Service\Shipment\Dependency\Service\ShipmentToCustomerServiceInterface $customerService
      * @param \Spryker\Service\Shipment\ShipmentConfig $shipmentConfig
      * @param \Spryker\Service\Shipment\Dependency\Service\ShipmentToUtilEncodingServiceInterface $utilEncodingService
      */
     public function __construct(
-        ShipmentToCustomerServiceInterface $customerService,
         ShipmentConfig $shipmentConfig,
         ShipmentToUtilEncodingServiceInterface $utilEncodingService
     ) {
-        $this->customerService = $customerService;
         $this->shipmentConfig = $shipmentConfig;
         $this->utilEncodingService = $utilEncodingService;
     }
@@ -75,7 +67,7 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
             return '';
         }
 
-        return $this->customerService->getUniqueAddressKey($shipmentTransfer->getShippingAddress());
+        return md5($this->utilEncodingService->encodeJson($shipmentTransfer->getShippingAddress()->toArray(true, true)));
     }
 
     /**
