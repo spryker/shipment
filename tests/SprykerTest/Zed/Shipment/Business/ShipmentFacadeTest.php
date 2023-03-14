@@ -9,12 +9,16 @@ namespace SprykerTest\Zed\Shipment\Business;
 
 use ArrayObject;
 use Codeception\TestCase\Test;
+use Generated\Shared\DataBuilder\ItemBuilder;
+use Generated\Shared\DataBuilder\QuoteBuilder;
 use Generated\Shared\Transfer\CalculableObjectTransfer;
 use Generated\Shared\Transfer\CurrencyTransfer;
 use Generated\Shared\Transfer\ExpenseTransfer;
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\MoneyValueTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
+use Generated\Shared\Transfer\ShipmentTransfer;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethod;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice;
 use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPriceQuery;
@@ -27,6 +31,7 @@ use Spryker\Zed\Shipment\Communication\Plugin\ShipmentMethodDeliveryTimePluginIn
 use Spryker\Zed\Shipment\Communication\Plugin\ShipmentMethodPricePluginInterface;
 use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCurrencyInterface;
 use Spryker\Zed\Shipment\ShipmentDependencyProvider;
+use SprykerTest\Zed\Shipment\Business\Mock\TestShipmentMethodPricePlugin;
 
 /**
  * Auto-generated group annotations
@@ -406,6 +411,83 @@ class ShipmentFacadeTest extends Test
 
         $this->assertSame($shipmentMethodsTransfer->getStoreCurrencyPrice(), $expectedPriceResult);
     }
+
+    /**
+     * @return void
+     */
+    public function testFindAvailableMethodByIdShouldReturnShipmentMethodWithPricePluginById(): void
+    {
+        // Arrange
+        $this->tester->ensureShipmentMethodTableIsEmpty();
+        $this->tester->setDependency(ShipmentDependencyProvider::PRICE_PLUGINS, [
+            TestShipmentMethodPricePlugin::TEST_PRICE_PLUGIN_DEPENDENCY_KEY => new TestShipmentMethodPricePlugin(),
+        ]);
+
+        $priceList = $this->createDefaultPriceList();
+        $shipmentMethodTransfer = $this->tester->haveShipmentMethod([], [], $priceList);
+        $this->tester->assignShipmentPricePluginToShipmentMethod(
+            $shipmentMethodTransfer,
+            TestShipmentMethodPricePlugin::TEST_PRICE_PLUGIN_DEPENDENCY_KEY,
+        );
+
+        $itemBuilder = (new ItemBuilder())->withShipment([
+            ShipmentTransfer::METHOD => [
+                ShipmentMethodTransfer::ID_SHIPMENT_METHOD => $shipmentMethodTransfer->getIdShipmentMethod(),
+            ],
+        ]);
+        $quoteTransfer = (new QuoteBuilder())
+            ->withItem($itemBuilder)
+            ->build();
+
+        // Act
+        $shipmentMethodsTransfer = $this->tester->getShipmentFacade()->findAvailableMethodById(
+            $shipmentMethodTransfer->getIdShipmentMethodOrFail(),
+            $quoteTransfer,
+        );
+
+        // Assert
+        $this->assertNotNull($shipmentMethodsTransfer);
+        $this->assertSame(TestShipmentMethodPricePlugin::TEST_SHIPMENT_METHOD_PRICE_PLUGIN_PRICE, $shipmentMethodsTransfer->getStoreCurrencyPrice());
+    }
+
+    /**
+     * @return void
+     */
+    public function testFindAvailableMethodByIdShouldReturnNullWhenShipmentMethodHasPricePluginAndNotAllQuoteItemsHaveShipment(): void
+    {
+        // Arrange
+        $this->tester->ensureShipmentMethodTableIsEmpty();
+        $this->tester->setDependency(ShipmentDependencyProvider::PRICE_PLUGINS, [
+            TestShipmentMethodPricePlugin::TEST_PRICE_PLUGIN_DEPENDENCY_KEY => new TestShipmentMethodPricePlugin(),
+        ]);
+
+        $priceList = $this->createDefaultPriceList();
+        $shipmentMethodTransfer = $this->tester->haveShipmentMethod([], [], $priceList);
+        $this->tester->assignShipmentPricePluginToShipmentMethod(
+            $shipmentMethodTransfer,
+            TestShipmentMethodPricePlugin::TEST_PRICE_PLUGIN_DEPENDENCY_KEY,
+        );
+
+        $itemBuilder = (new ItemBuilder())->withShipment([
+            ShipmentTransfer::METHOD => [
+                ShipmentMethodTransfer::ID_SHIPMENT_METHOD => $shipmentMethodTransfer->getIdShipmentMethod(),
+            ],
+        ]);
+        $quoteTransfer = (new QuoteBuilder())
+            ->withItem($itemBuilder)
+            ->withAnotherItem([ItemTransfer::SHIPMENT => null])
+            ->build();
+
+        // Act
+        $shipmentMethodsTransfer = $this->tester->getShipmentFacade()->findAvailableMethodById(
+            $shipmentMethodTransfer->getIdShipmentMethodOrFail(),
+            $quoteTransfer,
+        );
+
+        // Assert
+        $this->assertNull($shipmentMethodsTransfer);
+    }
+
 
     /**
      * @return void

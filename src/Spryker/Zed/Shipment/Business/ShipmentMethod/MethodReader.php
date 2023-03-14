@@ -86,8 +86,13 @@ class MethodReader implements MethodReaderInterface
             return null;
         }
 
-        $storeCurrencyPrice = $this->methodPriceReader
-            ->findShipmentGroupShippingPrice($shipmentMethodTransfer, $quoteTransfer);
+        $shipmentGroupTransfer = $this->findShipmentGroupForShipmentMethod($idShipmentMethod, $quoteTransfer->getItems());
+        $storeCurrencyPrice = $this->methodPriceReader->findShipmentGroupShippingPrice(
+            $shipmentMethodTransfer,
+            $quoteTransfer,
+            $shipmentGroupTransfer
+        );
+
         if ($storeCurrencyPrice === null) {
             return null;
         }
@@ -107,6 +112,32 @@ class MethodReader implements MethodReaderInterface
         $shipmentMethodsCollectionTransfer = $this->applyFilters($shipmentMethodsCollectionTransfer, $shipmentGroupCollection, $quoteTransfer);
 
         return $shipmentMethodsCollectionTransfer;
+    }
+
+    /**
+     * @param int $idShipmentMethod
+     * @param \ArrayObject<array-key, \Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     *
+     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer|null
+     */
+    protected function findShipmentGroupForShipmentMethod(int $idShipmentMethod, ArrayObject $itemTransfers): ?ShipmentGroupTransfer
+    {
+        if (!$this->doAllItemsHaveShipment($itemTransfers)) {
+            return null;
+        }
+
+        $shipmentGroupTransfers = $this->shipmentService->groupItemsByShipment($itemTransfers);
+        if ($shipmentGroupTransfers->count() === 1) {
+            return $shipmentGroupTransfers->getIterator()->current();
+        }
+
+        foreach ($shipmentGroupTransfers as $shipmentGroupTransfer) {
+            if ($this->isSameShipmentMethod($shipmentGroupTransfer, $idShipmentMethod)) {
+                return $shipmentGroupTransfer;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -326,5 +357,34 @@ class MethodReader implements MethodReaderInterface
         }
 
         return new ShipmentGroupTransfer();
+    }
+
+    /**
+     * @param \ArrayObject<array-key, \Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     *
+     * @return bool
+     */
+    protected function doAllItemsHaveShipment(ArrayObject $itemTransfers): bool
+    {
+        foreach ($itemTransfers as $itemTransfer) {
+            if ($itemTransfer->getShipment() === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
+     * @param int $idShipmentMethod
+     *
+     * @return bool
+     */
+    protected function isSameShipmentMethod(ShipmentGroupTransfer $shipmentGroupTransfer, int $idShipmentMethod): bool
+    {
+        return $shipmentGroupTransfer->getShipment()
+            && $shipmentGroupTransfer->getShipmentOrFail()->getMethod()
+            && $shipmentGroupTransfer->getShipmentOrFail()->getMethodOrFail()->getIdShipmentMethod() === $idShipmentMethod;
     }
 }

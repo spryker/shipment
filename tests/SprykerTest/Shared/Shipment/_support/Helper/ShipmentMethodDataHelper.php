@@ -11,6 +11,8 @@ use Codeception\Module;
 use Generated\Shared\DataBuilder\MoneyValueBuilder;
 use Generated\Shared\DataBuilder\ShipmentMethodBuilder;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
+use Orm\Zed\Shipment\Persistence\SpyShipmentMethodPriceQuery;
+use Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery;
 use SprykerTest\Shared\Testify\Helper\LocatorHelperTrait;
 
 class ShipmentMethodDataHelper extends Module
@@ -69,6 +71,15 @@ class ShipmentMethodDataHelper extends Module
         $shipmentMethodTransfer->setIdShipmentMethod($idShipmentMethod);
 
         return $shipmentMethodTransfer;
+    }
+
+    /**
+     * @return void
+     */
+    public function ensureShipmentMethodTableIsEmpty(): void
+    {
+        SpyShipmentMethodPriceQuery::create()->deleteAll();
+        SpyShipmentMethodQuery::create()->deleteAll();
     }
 
     /**
