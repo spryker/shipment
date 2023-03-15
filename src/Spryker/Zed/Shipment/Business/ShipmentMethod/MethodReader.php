@@ -122,7 +122,7 @@ class MethodReader implements MethodReaderInterface
      */
     protected function findShipmentGroupForShipmentMethod(int $idShipmentMethod, ArrayObject $itemTransfers): ?ShipmentGroupTransfer
     {
-        if (!$this->doAllItemsHaveShipment($itemTransfers)) {
+        if (!$this->isShipmentSetForAllItems($itemTransfers)) {
             return null;
         }
 
@@ -364,7 +364,7 @@ class MethodReader implements MethodReaderInterface
      *
      * @return bool
      */
-    protected function doAllItemsHaveShipment(ArrayObject $itemTransfers): bool
+    protected function isShipmentSetForAllItems(ArrayObject $itemTransfers): bool
     {
         foreach ($itemTransfers as $itemTransfer) {
             if ($itemTransfer->getShipment() === null) {
