@@ -5,7 +5,7 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerTest\Zed\Shipment\Business;
+namespace SprykerTest\Zed\Shipment\Business\Facade;
 
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\ShipmentMethodCollectionTransfer;
@@ -21,45 +21,16 @@ use SprykerTest\Zed\Shipment\ShipmentBusinessTester;
  * @group Zed
  * @group Shipment
  * @group Business
- * @group FindMethodByIdTest
+ * @group Facade
+ * @group GetMethodsTest
  * Add your own group annotations below this line
  */
-class FindMethodByIdTest extends Unit
+class GetMethodsTest extends Unit
 {
     /**
      * @var \SprykerTest\Zed\Shipment\ShipmentBusinessTester
      */
     protected ShipmentBusinessTester $tester;
-
-    /**
-     * @return void
-     */
-    public function testFindMethodByIdShouldFindShipmentMethod(): void
-    {
-        // Arrange
-        $shipmentMethodTransfer = $this->tester->haveShipmentMethod();
-
-        // Act
-        $resultTransfer = $this->tester->getFacade()->findMethodById($shipmentMethodTransfer->getIdShipmentMethod());
-
-        // Assert
-        $this->assertNotNull($resultTransfer, 'Result should not be null');
-    }
-
-    /**
-     * @return void
-     */
-    public function testFindMethodByIdShouldNotReturnShipmentNethod(): void
-    {
-        // Arrange
-        $this->tester->ensureShipmentMethodTableIsEmpty();
-
-        // Act
-        $shipmentMethodTransfer = $this->tester->getFacade()->findMethodById(100);
-
-        // Assert
-        $this->assertNull($shipmentMethodTransfer);
-    }
 
     /**
      * @return void
@@ -71,10 +42,10 @@ class FindMethodByIdTest extends Unit
             ShipmentDependencyProvider::PLUGINS_SHIPMENT_METHOD_COLLECTION_EXPANDER,
             [$this->getShipmentMethodCollectionExpanderPluginMock()],
         );
-        $shipmentMethodTransfer = $this->tester->haveShipmentMethod([ShipmentMethodTransfer::IS_ACTIVE => true]);
+        $this->tester->haveShipmentMethod([ShipmentMethodTransfer::IS_ACTIVE => true]);
 
         // Act
-        $this->tester->getFacade()->findMethodById($shipmentMethodTransfer->getIdShipmentMethodOrFail());
+        $this->tester->getFacade()->getMethods();
     }
 
     /**
