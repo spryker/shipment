@@ -15,11 +15,12 @@ use Generated\Shared\Transfer\ShipmentMethodsTransfer;
 use Generated\Shared\Transfer\ShipmentMethodTransfer;
 use Generated\Shared\Transfer\ShipmentTransfer;
 use Spryker\Service\Shipment\ShipmentServiceInterface;
-use Spryker\Shared\Shipment\ShipmentConfig;
+use Spryker\Shared\Shipment\ShipmentConfig as SharedShipmentConfig;
 use Spryker\Zed\Shipment\Business\Mapper\ShipmentMapperInterface;
 use Spryker\Zed\Shipment\Business\Sanitizer\ExpenseSanitizerInterface;
 use Spryker\Zed\Shipment\Business\ShipmentMethod\MethodReaderInterface;
 use Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCalculationFacadeInterface;
+use Spryker\Zed\Shipment\ShipmentConfig;
 
 class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
 {
@@ -48,6 +49,12 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
      */
     protected $calculationFacade;
 
+
+    /**
+     * @var \Spryker\Zed\Shipment\ShipmentConfig
+     */
+    protected $shipmentConfig;
+
     /**
      * @var \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentGroupsSanitizerPluginInterface[]
      */
@@ -59,6 +66,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
      * @param \Spryker\Zed\Shipment\Business\Sanitizer\ExpenseSanitizerInterface $expenseSanitizer
      * @param \Spryker\Zed\Shipment\Business\Mapper\ShipmentMapperInterface $shipmentMapper
      * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCalculationFacadeInterface $calculationFacade
+     * @param \Spryker\Zed\Shipment\ShipmentConfig $shipmentConfig
      * @param \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentGroupsSanitizerPluginInterface[] $shipmentGroupsSanitizers
      */
     public function __construct(
@@ -67,6 +75,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         ExpenseSanitizerInterface $expenseSanitizer,
         ShipmentMapperInterface $shipmentMapper,
         ShipmentToCalculationFacadeInterface $calculationFacade,
+        ShipmentConfig $shipmentConfig,
         array $shipmentGroupsSanitizers
     ) {
         $this->shipmentService = $shipmentService;
@@ -74,6 +83,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         $this->expenseSanitizer = $expenseSanitizer;
         $this->shipmentMapper = $shipmentMapper;
         $this->calculationFacade = $calculationFacade;
+        $this->shipmentConfig = $shipmentConfig;
         $this->shipmentGroupsSanitizers = $shipmentGroupsSanitizers;
     }
 
@@ -92,7 +102,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         $quoteTransfer = $this->setShipmentExpenseTransfers($quoteTransfer, $shipmentGroupCollection);
         $quoteTransfer = $this->updateQuoteLevelShipment($quoteTransfer, $shipmentGroupCollection);
 
-        return $this->calculationFacade->recalculateQuote($quoteTransfer);
+        return $this->calculationFacade->recalculateQuote($quoteTransfer, $this->shipmentConfig->shouldExecuteQuotePostRecalculationPlugins());
     }
 
     /**
@@ -193,7 +203,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         ShipmentTransfer $shipmentTransfer
     ): ?ShipmentMethodTransfer {
         $shipmentSelection = $shipmentTransfer->getShipmentSelection();
-        if ($shipmentSelection === ShipmentConfig::SHIPMENT_METHOD_NAME_NO_SHIPMENT) {
+        if ($shipmentSelection === SharedShipmentConfig::SHIPMENT_METHOD_NAME_NO_SHIPMENT) {
             return $this->findNoShipmentMethod($shipmentMethodsTransfer);
         }
 
@@ -219,7 +229,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
     protected function findNoShipmentMethod(ShipmentMethodsTransfer $shipmentMethodsTransfer): ?ShipmentMethodTransfer
     {
         foreach ($shipmentMethodsTransfer->getMethods() as $shipmentMethodTransfer) {
-            if ($shipmentMethodTransfer->getName() === ShipmentConfig::SHIPMENT_METHOD_NAME_NO_SHIPMENT) {
+            if ($shipmentMethodTransfer->getName() === SharedShipmentConfig::SHIPMENT_METHOD_NAME_NO_SHIPMENT) {
                 return $shipmentMethodTransfer;
             }
         }
@@ -236,7 +246,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
     {
         $quoteExpenseForRemoveIndexes = [];
         foreach ($quoteTransfer->getExpenses() as $expenseTransferIndex => $expenseTransfer) {
-            if ($expenseTransfer->getType() === ShipmentConfig::SHIPMENT_EXPENSE_TYPE) {
+            if ($expenseTransfer->getType() === SharedShipmentConfig::SHIPMENT_EXPENSE_TYPE) {
                 $quoteExpenseForRemoveIndexes[] = $expenseTransferIndex;
             }
         }
@@ -257,7 +267,7 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
     protected function createShipmentExpenseTransfer(ShipmentMethodTransfer $shipmentMethodTransfer, $priceMode): ExpenseTransfer
     {
         $shipmentExpenseTransfer = $this->shipmentMapper->mapShipmentMethodTransferToShipmentExpenseTransfer($shipmentMethodTransfer, new ExpenseTransfer());
-        $shipmentExpenseTransfer->setType(ShipmentConfig::SHIPMENT_EXPENSE_TYPE);
+        $shipmentExpenseTransfer->setType(SharedShipmentConfig::SHIPMENT_EXPENSE_TYPE);
         $shipmentExpenseTransfer->setQuantity(1);
 
         $shipmentMethodTransfer->requireStoreCurrencyPrice();
