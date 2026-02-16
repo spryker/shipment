@@ -35,7 +35,7 @@ interface ShipmentMethodReaderInterface
     public function findShipmentMethodByKey(string $shipmentMethodKey): ?ShipmentMethodTransfer;
 
     /**
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     public function getActiveShipmentMethods(): array;
 

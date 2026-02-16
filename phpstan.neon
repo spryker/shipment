@@ -4,5 +4,6 @@ parameters:
         - '#Call to an undefined method Orm\\.+Query::filterByName\(\).#'
         - '#Call to an undefined method Orm\\.+Query::filterByIdShipmentMethod\(\).#'
         - '#Call to an undefined method Orm\\.+Query::filterByPricePlugin\(\).#'
+        - { message: '#Instanceof between Closure and Closure will always evaluate to true#', path: '%rootDir%/../../../src/Spryker/Shipment/src/Spryker/Zed/Shipment/Business/StrategyResolver/' }
         -
             identifier: missingType.iterableValue

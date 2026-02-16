@@ -10,7 +10,7 @@ namespace Spryker\Zed\Shipment\Business\Grouper;
 class ItemGrouper implements ItemGrouperInterface
 {
     /**
-     * @param list<\Generated\Shared\Transfer\ItemTransfer> $itemTransferCollection
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransferCollection
      *
      * @return array<int, \Generated\Shared\Transfer\ItemTransfer>
      */

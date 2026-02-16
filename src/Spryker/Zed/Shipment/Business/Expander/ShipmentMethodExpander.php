@@ -16,12 +16,12 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
 {
     /**
-     * @var list<\Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface>
+     * @var array<\Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface>
      */
     protected array $shipmentMethodCollectionExpanderPlugins;
 
     /**
-     * @param list<\Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface> $shipmentMethodCollectionExpanderPlugins
+     * @param array<\Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface> $shipmentMethodCollectionExpanderPlugins
      */
     public function __construct(array $shipmentMethodCollectionExpanderPlugins)
     {
@@ -41,9 +41,9 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
+     * @param array<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
      *
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     public function expandShipmentMethodTransfers(array $shipmentMethodTransfers): array
     {
@@ -80,9 +80,9 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
+     * @param array<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
      *
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     protected function executeShipmentMethodCollectionExpanderPluginsForShipmentMethodTransfers(array $shipmentMethodTransfers): array
     {
@@ -111,7 +111,7 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
     /**
      * @param \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer $shipmentMethodsCollectionTransfer
      *
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     protected function extractShipmentMethodTransfersFromShipmentMethodsCollectionTransfer(
         ShipmentMethodsCollectionTransfer $shipmentMethodsCollectionTransfer
@@ -127,7 +127,7 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
+     * @param array<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
      *
      * @return array<int, \Generated\Shared\Transfer\ShipmentMethodTransfer>
      */

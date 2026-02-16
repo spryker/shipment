@@ -21,9 +21,9 @@ interface ShipmentMethodExpanderInterface
     public function expandShipmentMethodTransfer(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer;
 
     /**
-     * @param list<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
+     * @param array<\Generated\Shared\Transfer\ShipmentMethodTransfer> $shipmentMethodTransfers
      *
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     public function expandShipmentMethodTransfers(array $shipmentMethodTransfers): array;
 

@@ -221,7 +221,7 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ShipmentGroupTransfer> $shipmentGroupTransfers
+     * @param array<\Generated\Shared\Transfer\ShipmentGroupTransfer> $shipmentGroupTransfers
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return \Generated\Shared\Transfer\QuoteTransfer

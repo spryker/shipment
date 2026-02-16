@@ -107,7 +107,7 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
     }
 
     /**
-     * @return list<\Generated\Shared\Transfer\ShipmentMethodTransfer>
+     * @return array<\Generated\Shared\Transfer\ShipmentMethodTransfer>
      */
     public function getActiveShipmentMethods(): array
     {

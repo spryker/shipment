@@ -49,9 +49,9 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
      *
-     * @return list<\Generated\Shared\Transfer\ItemTransfer>
+     * @return array<\Generated\Shared\Transfer\ItemTransfer>
      */
     public function expandOrderItemsWithShipment(array $itemTransfers): array
     {
@@ -90,7 +90,7 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
      *
      * @return \Generated\Shared\Transfer\OrderTransfer
      */
@@ -108,7 +108,7 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
     }
 
     /**
-     * @param list<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     * @param array<\Generated\Shared\Transfer\ItemTransfer> $itemTransfers
      *
      * @return \Generated\Shared\Transfer\SalesShipmentCriteriaTransfer
      */
@@ -125,9 +125,9 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
     /**
      * @param array<int, \Generated\Shared\Transfer\ShipmentTransfer> $shipmentTransferCollectionIndexedByIdSalesShipment
      * @param array<int, \Generated\Shared\Transfer\ItemTransfer> $itemTransferCollectionIndexedByIdSalesOrderItem
-     * @param array<int, list<int>> $itemIdsGroupedByShipmentIds
+     * @param array<int, array<int>> $itemIdsGroupedByShipmentIds
      *
-     * @return list<\Generated\Shared\Transfer\ItemTransfer>
+     * @return array<\Generated\Shared\Transfer\ItemTransfer>
      */
     protected function expandItemTransferCollectionWithShipments(
         array $shipmentTransferCollectionIndexedByIdSalesShipment,
@@ -153,9 +153,9 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
     /**
      * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
      * @param array<int, \Generated\Shared\Transfer\ItemTransfer> $itemTransferCollectionIndexedByIdSalesOrderItem
-     * @param list<int> $idSalesOrderItemCollection
+     * @param array<int> $idSalesOrderItemCollection
      *
-     * @return list<\Generated\Shared\Transfer\ItemTransfer>
+     * @return array<\Generated\Shared\Transfer\ItemTransfer>
      */
     protected function expandItemTransferCollectionWithShipmentTransfer(
         ShipmentTransfer $shipmentTransfer,

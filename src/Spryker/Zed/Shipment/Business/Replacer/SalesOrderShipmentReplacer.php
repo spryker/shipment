@@ -108,9 +108,9 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
     }
 
     /**
-     * @param array<int|null, list<int>> $salesOrderItemIds
+     * @param array<int|null, array<int>> $salesOrderItemIds
      *
-     * @return list<int>
+     * @return array<int>
      */
     protected function extractSalesOrderItemIds(array $salesOrderItemIds): array
     {
