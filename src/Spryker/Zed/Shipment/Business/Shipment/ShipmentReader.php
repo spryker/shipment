@@ -27,10 +27,6 @@ class ShipmentReader implements ShipmentReaderInterface
      */
     protected $shipmentRepository;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToSalesFacadeInterface $salesFacade
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     */
     public function __construct(
         ShipmentToSalesFacadeInterface $salesFacade,
         ShipmentRepositoryInterface $shipmentRepository
@@ -39,11 +35,6 @@ class ShipmentReader implements ShipmentReaderInterface
         $this->shipmentRepository = $shipmentRepository;
     }
 
-    /**
-     * @param int $idSalesShipment
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer|null
-     */
     public function findShipmentById(int $idSalesShipment): ?ShipmentTransfer
     {
         $shipmentTransfer = $this->shipmentRepository->findShipmentById($idSalesShipment);
@@ -62,11 +53,6 @@ class ShipmentReader implements ShipmentReaderInterface
         return $shipmentTransfer;
     }
 
-    /**
-     * @param string $shipmentMethodName
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     protected function getShipmentMethodTransferByName(string $shipmentMethodName): ?ShipmentMethodTransfer
     {
         if ($shipmentMethodName === '') {

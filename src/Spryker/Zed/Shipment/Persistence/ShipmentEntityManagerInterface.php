@@ -18,13 +18,6 @@ use Generated\Shared\Transfer\ShipmentTransfer;
  */
 interface ShipmentEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer|null $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     public function saveSalesShipment(
         ShipmentTransfer $shipmentTransfer,
         OrderTransfer $orderTransfer,
@@ -41,63 +34,20 @@ interface ShipmentEntityManagerInterface
      */
     public function updateFkShipmentForOrderItem(ItemTransfer $itemTransfer, ShipmentTransfer $shipmentTransfer): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function saveSalesShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function updateShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteMethodByIdMethod(int $idShipmentMethod): void;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteShipmentMethodStoreRelationsByIdShipmentMethod(int $idShipmentMethod): void;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteShipmentMethodPricesByIdShipmentMethod(int $idShipmentMethod): void;
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function saveSalesExpense(ExpenseTransfer $expenseTransfer, OrderTransfer $orderTransfer): ExpenseTransfer;
 
-    /**
-     * @param array $idStores
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function removeShipmentMethodStoreRelationsForStores(array $idStores, int $idShipmentMethod): void;
 
-    /**
-     * @param array $idStores
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function addShipmentMethodStoreRelationsForStores(array $idStores, int $idShipmentMethod): void;
 
     /**
@@ -116,10 +66,5 @@ interface ShipmentEntityManagerInterface
      */
     public function updateFkSalesShipmentForSalesOrderItems(iterable $itemTransfers, ?int $idSalesShipment): void;
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return void
-     */
     public function deleteSalesShipmentsByIdSalesOrder(int $idSalesOrder): void;
 }

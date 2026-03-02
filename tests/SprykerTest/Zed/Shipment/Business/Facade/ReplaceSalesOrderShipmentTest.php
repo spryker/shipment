@@ -54,9 +54,6 @@ class ReplaceSalesOrderShipmentTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testThrowsRequiredTransferPropertyExceptionWhenIdSalesOrderIsNotSetInSaveOrderTransfer(): void
     {
         // Assert
@@ -67,9 +64,6 @@ class ReplaceSalesOrderShipmentTest extends Unit
         $this->tester->getFacade()->replaceSalesOrderShipment(new QuoteTransfer(), new SaveOrderTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testReplacesSalesShipment(): void
     {
         // Arrange
@@ -87,9 +81,6 @@ class ReplaceSalesOrderShipmentTest extends Unit
         $this->assertSame(static::TEST_SHIPMENT_METHOD_NAME, $this->tester->findSalesShipmentEntity($saveOrderTransfer->getIdSalesOrder())->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testReplacesExpensesWithShipmentExpenseType(): void
     {
         // Arrange
@@ -124,9 +115,6 @@ class ReplaceSalesOrderShipmentTest extends Unit
         $this->assertExpense($expenseTransfersIndexedByType, static::SHIPMENT_EXPENSE_TYPE, 200, 200);
     }
 
-    /**
-     * @return void
-     */
     public function testUnsetsFkSalesShipmentForSalesOrderItems(): void
     {
         // Arrange

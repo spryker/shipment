@@ -13,13 +13,6 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface MethodAvailabilityCheckerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return bool
-     */
     public function isShipmentMethodAvailableForShipmentGroup(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,

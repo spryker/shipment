@@ -27,10 +27,6 @@ class ShipmentExpenseCreator implements ShipmentExpenseCreatorInterface
      */
     protected $shipmentMapper;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Business\Mapper\ShipmentMapperInterface $shipmentMapper
-     * @param \Spryker\Zed\Shipment\Business\Sanitizer\ExpenseSanitizerInterface $expenseSanitizer
-     */
     public function __construct(
         ShipmentMapperInterface $shipmentMapper,
         ExpenseSanitizerInterface $expenseSanitizer
@@ -39,12 +35,6 @@ class ShipmentExpenseCreator implements ShipmentExpenseCreatorInterface
         $this->shipmentMapper = $shipmentMapper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function createShippingExpenseTransfer(
         ShipmentTransfer $shipmentTransfer,
         OrderTransfer $orderTransfer
@@ -63,13 +53,6 @@ class ShipmentExpenseCreator implements ShipmentExpenseCreatorInterface
         return $this->expenseSanitizer->sanitizeExpenseSumValues($expenseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
-     * @param int $price
-     * @param string $priceMode
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     protected function setExpenseSetPrice(
         ExpenseTransfer $shipmentExpenseTransfer,
         int $price,

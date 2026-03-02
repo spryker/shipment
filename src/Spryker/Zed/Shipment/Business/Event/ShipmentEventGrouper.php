@@ -16,9 +16,6 @@ class ShipmentEventGrouper implements ShipmentEventGrouperInterface
      */
     protected $shipmentService;
 
-    /**
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     */
     public function __construct(ShipmentServiceInterface $shipmentService)
     {
         $this->shipmentService = $shipmentService;

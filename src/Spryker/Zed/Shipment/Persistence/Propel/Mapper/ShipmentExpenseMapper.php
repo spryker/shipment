@@ -13,12 +13,6 @@ use Orm\Zed\Sales\Persistence\SpySalesShipment;
 
 class ShipmentExpenseMapper implements ShipmentExpenseMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesExpense $salesOrderExpenseEntity
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesExpense
-     */
     public function mapExpenseTransferToOrderSalesExpenseEntity(
         ExpenseTransfer $expenseTransfer,
         SpySalesExpense $salesOrderExpenseEntity
@@ -34,12 +28,6 @@ class ShipmentExpenseMapper implements ShipmentExpenseMapperInterface
         return $salesOrderExpenseEntity;
     }
 
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesExpense $salesOrderExpenseEntity
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function mapOrderSalesExpenseEntityToExpenseTransfer(
         SpySalesExpense $salesOrderExpenseEntity,
         ExpenseTransfer $expenseTransfer
@@ -55,12 +43,6 @@ class ShipmentExpenseMapper implements ShipmentExpenseMapperInterface
         return $expenseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment
-     */
     public function mapExpenseTransferToShipmentEntity(
         ExpenseTransfer $expenseTransfer,
         SpySalesShipment $salesShipmentEntity

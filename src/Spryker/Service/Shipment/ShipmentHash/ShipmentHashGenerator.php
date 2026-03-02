@@ -35,11 +35,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Service\Shipment\Dependency\Service\ShipmentToCustomerServiceInterface $customerService
-     * @param \Spryker\Service\Shipment\ShipmentConfig $shipmentConfig
-     * @param \Spryker\Service\Shipment\Dependency\Service\ShipmentToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(
         ShipmentToCustomerServiceInterface $customerService,
         ShipmentConfig $shipmentConfig,
@@ -50,11 +45,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
         $this->utilEncodingService = $utilEncodingService;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return string
-     */
     public function getShipmentHashKey(ShipmentTransfer $shipmentTransfer): string
     {
         return md5(sprintf(
@@ -66,11 +56,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
         ));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return string
-     */
     protected function prepareShippingAddressKey(ShipmentTransfer $shipmentTransfer): string
     {
         $shipmentAddressTransfer = $shipmentTransfer->getShippingAddress();
@@ -81,11 +66,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
         return $this->customerService->getUniqueAddressKey($shipmentTransfer->getShippingAddress());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return string
-     */
     protected function prepareShipmentMethodKey(ShipmentTransfer $shipmentTransfer): string
     {
         $shipmentMethodTransfer = $shipmentTransfer->getMethod();
@@ -97,11 +77,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
         return $this->getShipmentMethodKeyEncodedData($shipmentMethodTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return string
-     */
     protected function getShipmentMethodKeyEncodedData(ShipmentMethodTransfer $shipmentMethodTransfer): string
     {
         $shipmentMethodKeyData = [];
@@ -118,11 +93,6 @@ class ShipmentHashGenerator implements ShipmentHashGeneratorInterface
         return $this->utilEncodingService->encodeJson($shipmentMethodKeyData);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return string
-     */
     public function getShipmentAdditionalKeyData(ShipmentTransfer $shipmentTransfer): string
     {
         $shipmentAdditionalKeyData = [];

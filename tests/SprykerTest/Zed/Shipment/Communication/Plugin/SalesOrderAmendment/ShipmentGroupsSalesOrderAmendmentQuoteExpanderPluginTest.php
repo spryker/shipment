@@ -39,9 +39,6 @@ class ShipmentGroupsSalesOrderAmendmentQuoteExpanderPluginTest extends Unit
      */
     protected ShipmentCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandShouldExpandSalesOrderAmendmentQuotesWithShipmentGroups(): void
     {
         // Arrange
@@ -67,9 +64,6 @@ class ShipmentGroupsSalesOrderAmendmentQuoteExpanderPluginTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandShouldThrowExceptionWhenQuoteIsNotSet(): void
     {
         // Arrange
@@ -107,9 +101,6 @@ class ShipmentGroupsSalesOrderAmendmentQuoteExpanderPluginTest extends Unit
         return $serviceMock;
     }
 
-    /**
-     * @return \Spryker\Zed\Shipment\Communication\Plugin\SalesOrderAmendment\ShipmentGroupsSalesOrderAmendmentQuoteExpanderPlugin
-     */
     protected function createShipmentGroupsSalesOrderAmendmentQuoteExpanderPlugin(): ShipmentGroupsSalesOrderAmendmentQuoteExpanderPlugin
     {
         $plugin = new ShipmentGroupsSalesOrderAmendmentQuoteExpanderPlugin();

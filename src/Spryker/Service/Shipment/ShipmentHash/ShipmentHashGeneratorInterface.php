@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\ShipmentTransfer;
 
 interface ShipmentHashGeneratorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return string
-     */
     public function getShipmentHashKey(ShipmentTransfer $shipmentTransfer): string;
 }

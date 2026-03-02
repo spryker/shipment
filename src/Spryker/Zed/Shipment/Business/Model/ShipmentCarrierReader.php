@@ -18,9 +18,6 @@ class ShipmentCarrierReader implements ShipmentCarrierReaderInterface
      */
     protected $shipmentQueryContainer;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface $shipmentQueryContainer
-     */
     public function __construct(ShipmentQueryContainerInterface $shipmentQueryContainer)
     {
         $this->shipmentQueryContainer = $shipmentQueryContainer;

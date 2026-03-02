@@ -19,67 +19,31 @@ use Propel\Runtime\Collection\Collection;
 
 interface ShipmentMethodMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     *
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethod
-     */
     public function mapShipmentMethodTransferToShipmentMethodEntity(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         SpyShipmentMethod $salesShipmentMethodEntity
     ): SpyShipmentMethod;
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentMethodEntityToShipmentMethodTransfer(
         SpyShipmentMethod $salesShipmentMethodEntity,
         ShipmentMethodTransfer $shipmentMethodTransfer
     ): ShipmentMethodTransfer;
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentMethodEntityToShipmentMethodTransferWithPrices(
         SpyShipmentMethod $salesShipmentMethodEntity,
         ShipmentMethodTransfer $shipmentMethodTransfer
     ): ShipmentMethodTransfer;
 
-    /**
-     * @param \Orm\Zed\Currency\Persistence\SpyCurrency $currencyEntity
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function mapCurrencyEntityToCurrencyTransfer(
         SpyCurrency $currencyEntity,
         CurrencyTransfer $currencyTransfer
     ): CurrencyTransfer;
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice $shipmentMethodPrice
-     * @param \Generated\Shared\Transfer\ShipmentPriceTransfer $shipmentPriceTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentPriceTransfer
-     */
     public function mapShipmentMethodPriceEntityToShipmentPriceTransfer(
         SpyShipmentMethodPrice $shipmentMethodPrice,
         ShipmentPriceTransfer $shipmentPriceTransfer
     ): ShipmentPriceTransfer;
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice $shipmentMethodPriceEntity
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     public function mapShipmentMethodPriceEntityToMoneyValueTransfer(
         SpyShipmentMethodPrice $shipmentMethodPriceEntity,
         MoneyValueTransfer $moneyValueTransfer
@@ -96,12 +60,6 @@ interface ShipmentMethodMapperInterface
         array $shipmentMethodTransfers
     ): array;
 
-    /**
-     * @param \Propel\Runtime\Collection\Collection $shipmentMethodEntities
-     * @param \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function mapShipmentMethodEntitiesToShipmentMethodCollectionTransfer(
         Collection $shipmentMethodEntities,
         ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer

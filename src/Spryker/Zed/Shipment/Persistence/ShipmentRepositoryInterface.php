@@ -23,12 +23,6 @@ use Generated\Shared\Transfer\TaxSetTransfer;
 
 interface ShipmentRepositoryInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $methodTransfer
-     * @param string $countryIso2Code
-     *
-     * @return \Generated\Shared\Transfer\TaxSetTransfer|null
-     */
     public function findTaxSetByShipmentMethodAndCountryIso2Code(
         ShipmentMethodTransfer $methodTransfer,
         string $countryIso2Code
@@ -63,61 +57,20 @@ interface ShipmentRepositoryInterface
         ?ShipmentTransfer $defaultShipmentTransfer = null
     ): array;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function hasShipmentMethodByIdShipmentMethod(int $idShipmentMethod): bool;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function hasActiveShipmentMethodByIdShipmentMethod(int $idShipmentMethod): bool;
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer|null
-     */
     public function findSalesOrderById(int $idSalesOrder): ?OrderTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentCarrierRequestTransfer $shipmentCarrierRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentCarrierTransfer|null
-     */
     public function findShipmentCarrier(ShipmentCarrierRequestTransfer $shipmentCarrierRequestTransfer): ?ShipmentCarrierTransfer;
 
-    /**
-     * @param string $shipmentMethodName
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer;
 
-    /**
-     * @param string $shipmentMethodKey
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByKey(string $shipmentMethodKey): ?ShipmentMethodTransfer;
 
-    /**
-     * @param int $idShipmentMethod
-     * @param int $idStore
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByIdAndIdStore(int $idShipmentMethod, int $idStore): ?ShipmentMethodTransfer;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByIdWithPricesAndCarrier(int $idShipmentMethod): ?ShipmentMethodTransfer;
 
     /**
@@ -141,13 +94,6 @@ interface ShipmentRepositoryInterface
      */
     public function getActiveShipmentMethodsForStore(int $idStore): array;
 
-    /**
-     * @param int $idShipmentMethod
-     * @param int $idStore
-     * @param int $idCurrency
-     *
-     * @return \Generated\Shared\Transfer\ShipmentPriceTransfer|null
-     */
     public function findShipmentMethodPrice(int $idShipmentMethod, int $idStore, int $idCurrency): ?ShipmentPriceTransfer;
 
     /**
@@ -158,18 +104,8 @@ interface ShipmentRepositoryInterface
      */
     public function findSalesOrderItemsBySalesShipmentId(int $idSalesOrder, int $idSalesShipment): ArrayObject;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     public function isShipmentMethodUniqueForCarrier(ShipmentMethodTransfer $shipmentMethodTransfer): bool;
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\StoreRelationTransfer
-     */
     public function getStoreRelationByIdShipmentMethod(int $idShipmentMethod): StoreRelationTransfer;
 
     /**
@@ -177,20 +113,10 @@ interface ShipmentRepositoryInterface
      */
     public function getActiveShipmentCarriers(): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentCriteriaTransfer $salesShipmentCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentCollectionTransfer
-     */
     public function getSalesShipmentCollection(
         SalesShipmentCriteriaTransfer $salesShipmentCriteriaTransfer
     ): SalesShipmentCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function getShipmentMethodCollection(
         ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
     ): ShipmentMethodCollectionTransfer;

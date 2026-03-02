@@ -27,20 +27,11 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
      */
     protected $storeRelationMapper;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\Propel\Mapper\StoreRelationMapper $storeRelationMapper
-     */
     public function __construct(StoreRelationMapper $storeRelationMapper)
     {
         $this->storeRelationMapper = $storeRelationMapper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     *
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethod
-     */
     public function mapShipmentMethodTransferToShipmentMethodEntity(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         SpyShipmentMethod $salesShipmentMethodEntity
@@ -50,12 +41,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         return $salesShipmentMethodEntity;
     }
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentMethodEntityToShipmentMethodTransfer(
         SpyShipmentMethod $salesShipmentMethodEntity,
         ShipmentMethodTransfer $shipmentMethodTransfer
@@ -65,12 +50,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         return $shipmentMethodTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethodEntity
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentMethodEntityToShipmentMethodTransferWithPrices(
         SpyShipmentMethod $salesShipmentMethodEntity,
         ShipmentMethodTransfer $shipmentMethodTransfer
@@ -90,12 +69,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         return $shipmentMethodTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Currency\Persistence\SpyCurrency $currencyEntity
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function mapCurrencyEntityToCurrencyTransfer(
         SpyCurrency $currencyEntity,
         CurrencyTransfer $currencyTransfer
@@ -103,12 +76,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         return $currencyTransfer->fromArray($currencyEntity->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice $shipmentMethodPrice
-     * @param \Generated\Shared\Transfer\ShipmentPriceTransfer $shipmentPriceTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentPriceTransfer
-     */
     public function mapShipmentMethodPriceEntityToShipmentPriceTransfer(
         SpyShipmentMethodPrice $shipmentMethodPrice,
         ShipmentPriceTransfer $shipmentPriceTransfer
@@ -116,12 +83,6 @@ class ShipmentMethodMapper implements ShipmentMethodMapperInterface
         return $shipmentPriceTransfer->fromArray($shipmentMethodPrice->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPrice $shipmentMethodPriceEntity
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     public function mapShipmentMethodPriceEntityToMoneyValueTransfer(
         SpyShipmentMethodPrice $shipmentMethodPriceEntity,
         MoneyValueTransfer $moneyValueTransfer

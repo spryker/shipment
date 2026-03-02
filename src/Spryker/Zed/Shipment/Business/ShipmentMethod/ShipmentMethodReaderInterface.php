@@ -13,25 +13,10 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface ShipmentMethodReaderInterface
 {
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodById(int $idShipmentMethod): ?ShipmentMethodTransfer;
 
-    /**
-     * @param string $shipmentMethodName
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer;
 
-    /**
-     * @param string $shipmentMethodKey
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByKey(string $shipmentMethodKey): ?ShipmentMethodTransfer;
 
     /**
@@ -39,11 +24,6 @@ interface ShipmentMethodReaderInterface
      */
     public function getActiveShipmentMethods(): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function getShipmentMethodCollection(
         ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
     ): ShipmentMethodCollectionTransfer;

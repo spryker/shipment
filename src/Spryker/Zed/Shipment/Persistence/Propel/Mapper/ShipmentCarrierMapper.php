@@ -13,12 +13,6 @@ use Propel\Runtime\Collection\Collection;
 
 class ShipmentCarrierMapper
 {
-    /**
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentCarrier $salesShipmentEntity
-     * @param \Generated\Shared\Transfer\ShipmentCarrierTransfer $shipmentCarrierTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentCarrierTransfer
-     */
     public function mapShipmentCarrierEntityToShipmentCarrierTransfer(
         SpyShipmentCarrier $salesShipmentEntity,
         ShipmentCarrierTransfer $shipmentCarrierTransfer

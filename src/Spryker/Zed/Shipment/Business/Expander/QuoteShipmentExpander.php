@@ -86,11 +86,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         $this->shipmentGroupsSanitizers = $shipmentGroupsSanitizers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function expandQuoteWithShipmentGroups(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $shipmentGroupCollection = $this->shipmentService->groupItemsByShipment($quoteTransfer->getItems());
@@ -136,12 +131,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         return $shipmentGroupCollection;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer $availableShipmentMethodsGroupedByShipment
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodsTransfer|null
-     */
     protected function findAvailableShipmentMethodsByShipmentGroup(
         ShipmentMethodsCollectionTransfer $availableShipmentMethodsGroupedByShipment,
         ShipmentGroupTransfer $shipmentGroupTransfer
@@ -182,11 +171,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         return $shipmentGroupCollection;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return void
-     */
     protected function updateItemLevelShipmentReferences(ShipmentGroupTransfer $shipmentGroupTransfer): void
     {
         $shipmentTransfer = $shipmentGroupTransfer->getShipment();
@@ -195,12 +179,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodsTransfer $shipmentMethodsTransfer
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     protected function findShipmentMethod(
         ShipmentMethodsTransfer $shipmentMethodsTransfer,
         ShipmentTransfer $shipmentTransfer
@@ -224,11 +202,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodsTransfer $shipmentMethodsTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     protected function findNoShipmentMethod(ShipmentMethodsTransfer $shipmentMethodsTransfer): ?ShipmentMethodTransfer
     {
         foreach ($shipmentMethodsTransfer->getMethods() as $shipmentMethodTransfer) {
@@ -240,11 +213,6 @@ class QuoteShipmentExpander implements QuoteShipmentExpanderInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function removeAllShipmentExpensesFromQuote(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         $quoteExpenseForRemoveIndexes = [];

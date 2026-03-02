@@ -107,9 +107,6 @@ class ShipmentPersistenceTest extends Unit
         $this->assertSame($countOfNewShipments, $salesShipmentQuery->count(), 'Saved order shipments count mismatch!');
     }
 
-    /**
-     * @return array
-     */
     public function shipmentOrderSaverShouldUseQuoteLevelShipmentDataProvider(): array
     {
         return [
@@ -117,9 +114,6 @@ class ShipmentPersistenceTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function createOrderShipmentWithMultipleShipmentsDataProvider(): array
     {
         return [
@@ -129,9 +123,6 @@ class ShipmentPersistenceTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithQuoteLevelShipmentToFrance(): array
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -154,9 +145,6 @@ class ShipmentPersistenceTest extends Unit
         return [$quoteTransfer];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAnd1ItemToFrance(): array
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -180,9 +168,6 @@ class ShipmentPersistenceTest extends Unit
         return [$quoteTransfer, 1];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAnd2ItemsToFranceAnd1ItemToGermany(): array
     {
         $addressBuilder1 = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -219,9 +204,6 @@ class ShipmentPersistenceTest extends Unit
         return [$quoteTransfer, 2];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAnd3ItemsToFrance(): array
     {
         $addressBuilder1 = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));

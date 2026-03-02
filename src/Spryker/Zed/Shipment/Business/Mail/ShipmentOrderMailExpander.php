@@ -18,20 +18,11 @@ class ShipmentOrderMailExpander implements ShipmentOrderMailExpanderInterface
      */
     protected $shipmentService;
 
-    /**
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     */
     public function __construct(ShipmentServiceInterface $shipmentService)
     {
         $this->shipmentService = $shipmentService;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MailTransfer $mailTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\MailTransfer
-     */
     public function expandOrderMailTransfer(MailTransfer $mailTransfer, OrderTransfer $orderTransfer): MailTransfer
     {
         $shipmentGroups = $this->shipmentService->groupItemsByShipment($orderTransfer->getItems());

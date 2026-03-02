@@ -23,10 +23,6 @@ class MultiShipmentExpenseFilter implements MultiShipmentExpenseFilterInterface
      */
     protected $shipmentExpenseCollectionRemover;
 
-    /**
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     * @param \Spryker\Zed\Shipment\Business\ShipmentExpense\ShipmentExpenseCollectionRemoverInterface $shipmentExpenseCollectionRemover
-     */
     public function __construct(
         ShipmentServiceInterface $shipmentService,
         ShipmentExpenseCollectionRemoverInterface $shipmentExpenseCollectionRemover
@@ -35,11 +31,6 @@ class MultiShipmentExpenseFilter implements MultiShipmentExpenseFilterInterface
         $this->shipmentExpenseCollectionRemover = $shipmentExpenseCollectionRemover;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return void
-     */
     public function filterObsoleteShipmentExpenses(CalculableObjectTransfer $calculableObjectTransfer): void
     {
         $quoteTransfer = $calculableObjectTransfer->getOriginalQuote();
@@ -65,11 +56,6 @@ class MultiShipmentExpenseFilter implements MultiShipmentExpenseFilterInterface
         $calculableObjectTransfer->setExpenses($calculableObjectExpenseTransfers);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return bool
-     */
     protected function isItemShipmentMethodSet(ShipmentTransfer $shipmentTransfer): bool
     {
         $shipmentMethodTransfer = $shipmentTransfer->getMethod();

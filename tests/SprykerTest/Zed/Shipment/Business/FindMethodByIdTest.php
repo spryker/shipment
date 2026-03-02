@@ -31,9 +31,6 @@ class FindMethodByIdTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindMethodByIdShouldFindShipmentMethod(): void
     {
         // Arrange
@@ -46,9 +43,6 @@ class FindMethodByIdTest extends Unit
         $this->assertNotNull($resultTransfer, 'Result should not be null');
     }
 
-    /**
-     * @return void
-     */
     public function testFindMethodByIdShouldNotReturnShipmentNethod(): void
     {
         // Arrange
@@ -61,9 +55,6 @@ class FindMethodByIdTest extends Unit
         $this->assertNull($shipmentMethodTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -77,9 +68,6 @@ class FindMethodByIdTest extends Unit
         $this->tester->getFacade()->findMethodById($shipmentMethodTransfer->getIdShipmentMethodOrFail());
     }
 
-    /**
-     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface
-     */
     protected function getShipmentMethodCollectionExpanderPluginMock(): ShipmentMethodCollectionExpanderPluginInterface
     {
         $shipmentMethodCollectionExpanderPluginMock = $this

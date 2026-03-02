@@ -13,13 +13,6 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface MethodDeliveryTimeReaderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return int|null
-     */
     public function getDeliveryTimeForShippingGroup(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,

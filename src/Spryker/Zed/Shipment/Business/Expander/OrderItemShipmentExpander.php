@@ -33,11 +33,6 @@ class OrderItemShipmentExpander implements OrderItemShipmentExpanderInterface
      */
     protected ShipmentRepositoryInterface $shipmentRepository;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Business\Grouper\ItemGrouperInterface $itemGrouper
-     * @param \Spryker\Zed\Shipment\Business\Grouper\ShipmentGrouperInterface $shipmentGrouper
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     */
     public function __construct(
         ItemGrouperInterface $itemGrouper,
         ShipmentGrouperInterface $shipmentGrouper,

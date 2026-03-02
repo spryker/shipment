@@ -31,11 +31,6 @@ class ShipmentFetcher implements ShipmentFetcherInterface
      */
     protected $shipmentMethodTransformer;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface $queryContainer
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCurrencyInterface $currencyFacade
-     * @param \Spryker\Zed\Shipment\Business\Model\Transformer\ShipmentMethodTransformerInterface $shipmentMethodTransformer
-     */
     public function __construct(
         ShipmentQueryContainerInterface $queryContainer,
         ShipmentToCurrencyInterface $currencyFacade,
@@ -46,11 +41,6 @@ class ShipmentFetcher implements ShipmentFetcherInterface
         $this->shipmentMethodTransformer = $shipmentMethodTransformer;
     }
 
-    /**
-     * @param int $shipmentMethodId
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findActiveShipmentMethodWithPricesAndCarrierById(int $shipmentMethodId): ?ShipmentMethodTransfer
     {
         /** @var \Orm\Zed\Shipment\Persistence\SpyShipmentMethod|null $shipmentMethodEntity */
@@ -66,12 +56,6 @@ class ShipmentFetcher implements ShipmentFetcherInterface
         return $this->shipmentMethodTransformer->transformEntityToTransfer($shipmentMethodEntity);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentPriceTransfer|null
-     */
     public function findMethodPriceByShipmentMethodAndCurrentStoreCurrency(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         StoreTransfer $storeTransfer

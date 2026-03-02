@@ -21,12 +21,6 @@ class ShipmentDataHelper extends Module
     use DataCleanupHelperTrait;
     use LocatorHelperTrait;
 
-    /**
-     * @param int $idSalesOrder
-     * @param array $overrideShipment
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     public function haveShipment(int $idSalesOrder, array $overrideShipment = []): ShipmentTransfer
     {
         $shipmentTransfer = (new ShipmentBuilder($overrideShipment))->build();
@@ -46,12 +40,6 @@ class ShipmentDataHelper extends Module
         return $shipmentTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param int $idSalesOrder
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment
-     */
     protected function saveShipment(ShipmentTransfer $shipmentTransfer, int $idSalesOrder): SpySalesShipment
     {
         $shipmentEntity = new SpySalesShipment();
@@ -67,19 +55,11 @@ class ShipmentDataHelper extends Module
         return $shipmentEntity;
     }
 
-    /**
-     * @return \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface
-     */
     protected function getShipmentQuery(): ShipmentQueryContainerInterface
     {
         return $this->getLocator()->shipment()->queryContainer();
     }
 
-    /**
-     * @param int $idSalesShipment
-     *
-     * @return void
-     */
     protected function cleanupSalesShipment(int $idSalesShipment): void
     {
         $this->debug(sprintf('Deleting Sales shipment: %d', $idSalesShipment));

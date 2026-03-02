@@ -24,21 +24,11 @@ class ShipmentToCurrencyBridge implements ShipmentToCurrencyInterface
         $this->currencyFacade = $currencyFacade;
     }
 
-    /**
-     * @param string $isoCode
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function fromIsoCode(string $isoCode): CurrencyTransfer
     {
         return $this->currencyFacade->fromIsoCode($isoCode);
     }
 
-    /**
-     * @param int $idCurrency
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getByIdCurrency(int $idCurrency): CurrencyTransfer
     {
         return $this->currencyFacade->getByIdCurrency($idCurrency);

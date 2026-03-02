@@ -19,9 +19,6 @@ class ShipmentExpenseCollectionRemover implements ShipmentExpenseCollectionRemov
      */
     protected $shipmentService;
 
-    /**
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     */
     public function __construct(ShipmentServiceInterface $shipmentService)
     {
         $this->shipmentService = $shipmentService;
@@ -49,12 +46,6 @@ class ShipmentExpenseCollectionRemover implements ShipmentExpenseCollectionRemov
         return $expenseTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param string $shipmentHash
-     *
-     * @return bool
-     */
     protected function isExpenseShipmentMatchesWithHash(ExpenseTransfer $expenseTransfer, string $shipmentHash): bool
     {
         $expenseShipmentTransfer = $expenseTransfer->requireShipment()->getShipment();

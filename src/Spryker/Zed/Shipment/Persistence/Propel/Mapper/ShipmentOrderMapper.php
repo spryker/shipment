@@ -13,12 +13,6 @@ use Orm\Zed\Sales\Persistence\SpySalesShipment;
 
 class ShipmentOrderMapper implements ShipmentOrderMapperInterface
 {
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function mapSalesOrderEntityToOrderTransfer(
         SpySalesOrder $salesOrderEntity,
         OrderTransfer $orderTransfer
@@ -26,12 +20,6 @@ class ShipmentOrderMapper implements ShipmentOrderMapperInterface
         return $orderTransfer->fromArray((array)$salesOrderEntity->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment
-     */
     public function mapOrderTransferToShipmentEntity(
         OrderTransfer $orderTransfer,
         SpySalesShipment $salesShipmentEntity

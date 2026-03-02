@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\StoreRelationTransfer;
 
 interface ShipmentMethodStoreRelationUpdaterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\StoreRelationTransfer $storeRelationTransfer
-     *
-     * @return void
-     */
     public function update(StoreRelationTransfer $storeRelationTransfer): void;
 }

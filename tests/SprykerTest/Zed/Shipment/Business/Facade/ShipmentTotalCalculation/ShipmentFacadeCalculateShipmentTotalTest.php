@@ -32,9 +32,6 @@ class ShipmentFacadeCalculateShipmentTotalTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testCalculateShipmentTotalCalculatesExpansesWithShipmentType(): void
     {
         // Arrange
@@ -47,9 +44,6 @@ class ShipmentFacadeCalculateShipmentTotalTest extends Unit
         $this->assertSame(300, $calculableObjectTransfer->getTotals()->getShipmentTotal());
     }
 
-    /**
-     * @return void
-     */
     public function testCalculateShipmentTotalCalculatesExpansesWithoutExpenses(): void
     {
         // Arrange

@@ -31,9 +31,6 @@ class FindShipmentMethodByNameTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -47,9 +44,6 @@ class FindShipmentMethodByNameTest extends Unit
         $this->tester->getFacade()->findShipmentMethodByName($shipmentMethodTransfer->getNameOrFail());
     }
 
-    /**
-     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface
-     */
     protected function getShipmentMethodCollectionExpanderPluginMock(): ShipmentMethodCollectionExpanderPluginInterface
     {
         $shipmentMethodCollectionExpanderPluginMock = $this

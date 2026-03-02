@@ -28,10 +28,6 @@ class ShipmentMethodDeleter implements ShipmentMethodDeleterInterface
      */
     protected $shipmentEntityManager;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $shipmentEntityManager
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentEntityManagerInterface $shipmentEntityManager
@@ -40,11 +36,6 @@ class ShipmentMethodDeleter implements ShipmentMethodDeleterInterface
         $this->shipmentEntityManager = $shipmentEntityManager;
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function deleteShipmentMethod(int $idShipmentMethod): bool
     {
         $hasShipmentMethod = $this->shipmentRepository->hasShipmentMethodByIdShipmentMethod($idShipmentMethod);
@@ -60,11 +51,6 @@ class ShipmentMethodDeleter implements ShipmentMethodDeleterInterface
         return true;
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     protected function executeDeleteShipmentMethodTransaction(int $idShipmentMethod): void
     {
         $this->shipmentEntityManager->deleteShipmentMethodStoreRelationsByIdShipmentMethod($idShipmentMethod);

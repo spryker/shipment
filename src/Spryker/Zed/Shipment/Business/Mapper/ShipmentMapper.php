@@ -12,12 +12,6 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 class ShipmentMapper implements ShipmentMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function mapShipmentMethodTransferToExpenseTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ExpenseTransfer $expenseTransfer
@@ -25,12 +19,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $expenseTransfer->fromArray($shipmentMethodTransfer->modifiedToArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function mapShipmentMethodTransferToShipmentExpenseTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ExpenseTransfer $shipmentExpenseTransfer

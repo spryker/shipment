@@ -82,9 +82,6 @@ class CreateShipmentWithNewDataTest extends Unit
         $this->assertCount(1, $itemEntities, 'Shipment should have been assigned for one order item');
     }
 
-    /**
-     * @return array
-     */
     public function createNewShipmentForOrderItemDataProvider(): array
     {
         return [
@@ -94,9 +91,6 @@ class CreateShipmentWithNewDataTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithNewShippingAddress(): array
     {
         $quoteTransfer = $this->createQuoteTransfer();
@@ -110,9 +104,6 @@ class CreateShipmentWithNewDataTest extends Unit
         return [$quoteTransfer, $actualShipmentTransfer, $itemTransfer];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithNewShipmentMethod(): array
     {
         $quoteTransfer = $this->createQuoteTransfer();
@@ -129,9 +120,6 @@ class CreateShipmentWithNewDataTest extends Unit
         return [$quoteTransfer, $actualShipmentTransfer, $itemTransfer];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithNewDeliveryDate(): array
     {
         $quoteTransfer = $this->createQuoteTransfer();
@@ -146,9 +134,6 @@ class CreateShipmentWithNewDataTest extends Unit
         return [$quoteTransfer, $actualShipmentTransfer, $itemTransfer];
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function createQuoteTransfer(): QuoteTransfer
     {
         return (new QuoteBuilder([
@@ -223,9 +208,6 @@ class CreateShipmentWithNewDataTest extends Unit
         $this->assertNotEquals($expectedIdSalesOrderAddress, $shipmentEntity->getFkSalesOrderAddress(), 'New sales shipment should have been a new sales order address assigned.');
     }
 
-    /**
-     * @return array
-     */
     public function createShipmentWithNewShippingAddressDataProvider(): array
     {
         return [

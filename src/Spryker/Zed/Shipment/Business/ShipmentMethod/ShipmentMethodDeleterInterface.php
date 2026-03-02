@@ -9,10 +9,5 @@ namespace Spryker\Zed\Shipment\Business\ShipmentMethod;
 
 interface ShipmentMethodDeleterInterface
 {
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function deleteShipmentMethod(int $idShipmentMethod): bool;
 }

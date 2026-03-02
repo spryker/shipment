@@ -9,8 +9,5 @@ namespace Spryker\Zed\Shipment\Dependency\Facade;
 
 interface ShipmentToPriceFacadeInterface
 {
-    /**
-     * @return string
-     */
     public function getNetPriceModeIdentifier(): string;
 }

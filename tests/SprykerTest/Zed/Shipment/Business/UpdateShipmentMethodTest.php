@@ -32,9 +32,6 @@ class UpdateShipmentMethodTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testUpdateMethodShouldUpdateShipmentMethodWithStoreRelation(): void
     {
         // Arrange

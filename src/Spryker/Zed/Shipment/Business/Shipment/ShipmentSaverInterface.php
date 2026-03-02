@@ -13,12 +13,6 @@ use Generated\Shared\Transfer\ShipmentGroupTransfer;
 
 interface ShipmentSaverInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupResponseTransfer
-     */
     public function saveShipment(
         ShipmentGroupTransfer $shipmentGroupTransfer,
         OrderTransfer $orderTransfer

@@ -33,9 +33,6 @@ class CreateShipmentMethodTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testCreateMethodShouldCreateShipmentMethodWithStoreRelation(): void
     {
         // Arrange

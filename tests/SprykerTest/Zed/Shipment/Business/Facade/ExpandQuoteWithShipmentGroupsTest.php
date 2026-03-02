@@ -72,9 +72,6 @@ class ExpandQuoteWithShipmentGroupsTest extends Unit
         $this->tester->getFacade()->expandQuoteWithShipmentGroups($quoteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldSetSelectedShipmentMethod(): void
     {
         // Arrange
@@ -113,12 +110,6 @@ class ExpandQuoteWithShipmentGroupsTest extends Unit
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $expectedShipmentMethodTransfer
-     *
-     * @return void
-     */
     protected function assertItemsHaveCorrectShipmentMethod(QuoteTransfer $quoteTransfer, ShipmentMethodTransfer $expectedShipmentMethodTransfer): void
     {
         foreach ($quoteTransfer->getItems() as $itemTransfer) {
@@ -129,12 +120,6 @@ class ExpandQuoteWithShipmentGroupsTest extends Unit
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $expectedShipmentMethodTransfer
-     *
-     * @return void
-     */
     protected function assertExpensesAreCorrect(QuoteTransfer $quoteTransfer, ShipmentMethodTransfer $expectedShipmentMethodTransfer): void
     {
         foreach ($quoteTransfer->getExpenses() as $expenseTransfer) {

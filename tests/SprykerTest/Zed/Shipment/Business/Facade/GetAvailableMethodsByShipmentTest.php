@@ -62,9 +62,6 @@ class GetAvailableMethodsByShipmentTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testShouldCorrectlyShowPriceWhenPricePluginReturnsDifferentPriceForDifferentProducts(): void
     {
         // Arrange
@@ -110,12 +107,6 @@ class GetAvailableMethodsByShipmentTest extends Unit
         $this->assertShipmentMethodPrice($shipmentMethodsIterator->current(), static::ITEM_SHIPMENT_PRICE_MAP[static::ITEM_SKU_2]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodsTransfer $shipmentMethodsTransfer
-     * @param int $expectedPrice
-     *
-     * @return void
-     */
     protected function assertShipmentMethodPrice(ShipmentMethodsTransfer $shipmentMethodsTransfer, int $expectedPrice): void
     {
         $this->assertCount(1, $shipmentMethodsTransfer->getMethods());
@@ -144,12 +135,6 @@ class GetAvailableMethodsByShipmentTest extends Unit
                 $this->priceMap = $priceMap;
             }
 
-            /**
-             * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-             * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-             *
-             * @return int
-             */
             public function getPrice(ShipmentGroupTransfer $shipmentGroupTransfer, QuoteTransfer $quoteTransfer): int
             {
                 $itemSku = $shipmentGroupTransfer->getItems()->getIterator()->current()->getSku();

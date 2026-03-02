@@ -28,13 +28,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
      */
     protected const COL_FK_SALES_SHIPMENT = 'FkSalesShipment';
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer|null $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     public function saveSalesShipment(
         ShipmentTransfer $shipmentTransfer,
         OrderTransfer $orderTransfer,
@@ -126,11 +119,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->update([static::COL_FK_SALES_SHIPMENT => $idSalesShipment]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function saveSalesShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer
     {
         $shipmentMethodMapper = $this->getFactory()->createShipmentMethodMapper();
@@ -144,11 +132,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->mapShipmentMethodEntityToShipmentMethodTransfer($shipmentMethodEntity, $shipmentMethodTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function updateShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer
     {
         $shipmentMethodTransfer->requireIdShipmentMethod();
@@ -169,11 +152,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->mapShipmentMethodEntityToShipmentMethodTransfer($shipmentMethodEntity, $shipmentMethodTransfer);
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteMethodByIdMethod(int $idShipmentMethod): void
     {
         $this->getFactory()
@@ -183,11 +161,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->delete();
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteShipmentMethodStoreRelationsByIdShipmentMethod(int $idShipmentMethod): void
     {
         /** @var \Propel\Runtime\Collection\ObjectCollection $shipmentMethodStoreCollection */
@@ -199,11 +172,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
         $shipmentMethodStoreCollection->delete();
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function deleteShipmentMethodPricesByIdShipmentMethod(int $idShipmentMethod): void
     {
         $this->getFactory()
@@ -212,12 +180,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->delete();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function saveSalesExpense(ExpenseTransfer $expenseTransfer, OrderTransfer $orderTransfer): ExpenseTransfer
     {
         $expenseMapper = $this->getFactory()->createShipmentExpenseMapper();
@@ -232,12 +194,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
             ->mapOrderSalesExpenseEntityToExpenseTransfer($salesOrderExpenseEntity, $expenseTransfer);
     }
 
-    /**
-     * @param array $idStores
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function removeShipmentMethodStoreRelationsForStores(array $idStores, int $idShipmentMethod): void
     {
         if ($idStores === []) {
@@ -254,12 +210,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
         $shipmentMethodStoreCollection->delete();
     }
 
-    /**
-     * @param array $idStores
-     * @param int $idShipmentMethod
-     *
-     * @return void
-     */
     public function addShipmentMethodStoreRelationsForStores(array $idStores, int $idShipmentMethod): void
     {
         foreach ($idStores as $idStore) {
@@ -270,11 +220,6 @@ class ShipmentEntityManager extends AbstractEntityManager implements ShipmentEnt
         }
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return void
-     */
     public function deleteSalesShipmentsByIdSalesOrder(int $idSalesOrder): void
     {
         $this->getFactory()->createSalesShipmentQuery()->filterByFkSalesOrder($idSalesOrder)->delete();

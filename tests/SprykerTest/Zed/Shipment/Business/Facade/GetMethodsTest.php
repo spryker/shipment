@@ -32,9 +32,6 @@ class GetMethodsTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -48,9 +45,6 @@ class GetMethodsTest extends Unit
         $this->tester->getFacade()->getMethods();
     }
 
-    /**
-     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface
-     */
     protected function getShipmentMethodCollectionExpanderPluginMock(): ShipmentMethodCollectionExpanderPluginInterface
     {
         $shipmentMethodCollectionExpanderPluginMock = $this

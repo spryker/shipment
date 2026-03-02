@@ -13,18 +13,7 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface MethodReaderInterface
 {
-    /**
-     * @param int $idShipmentMethod
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findAvailableMethodById(int $idShipmentMethod, QuoteTransfer $quoteTransfer): ?ShipmentMethodTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer
-     */
     public function getAvailableMethodsByShipment(QuoteTransfer $quoteTransfer): ShipmentMethodsCollectionTransfer;
 }

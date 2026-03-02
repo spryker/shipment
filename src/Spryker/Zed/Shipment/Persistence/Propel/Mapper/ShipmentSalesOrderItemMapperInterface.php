@@ -12,12 +12,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 
 interface ShipmentSalesOrderItemMapperInterface
 {
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $spySalesOrderItemEntity
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     public function mapSalesOrderItemEntityToItemTransfer(
         SpySalesOrderItem $spySalesOrderItemEntity,
         ItemTransfer $itemTransfer

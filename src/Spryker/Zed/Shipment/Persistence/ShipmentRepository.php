@@ -45,12 +45,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
      */
     protected const COL_MAX_TAX_RATE = 'maxTaxRate';
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $methodTransfer
-     * @param string $countryIso2Code
-     *
-     * @return \Generated\Shared\Transfer\TaxSetTransfer|null
-     */
     public function findTaxSetByShipmentMethodAndCountryIso2Code(
         ShipmentMethodTransfer $methodTransfer,
         string $countryIso2Code
@@ -162,11 +156,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->mapShipmentMethodEntitiesToShipmentMethodTransfers($salesShipmentMethods, []);
     }
 
-    /**
-     * @param string $shipmentMethodName
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer
     {
         $salesShipmentMethodEntity = $this->queryMethodsWithMethodPricesAndCarrier()
@@ -186,11 +175,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             );
     }
 
-    /**
-     * @param string $shipmentMethodKey
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByKey(string $shipmentMethodKey): ?ShipmentMethodTransfer
     {
         $shipmentMethodEntity = $this->queryMethodsWithMethodPricesAndCarrier()
@@ -210,12 +194,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             );
     }
 
-    /**
-     * @param int $idShipmentMethod
-     * @param int $idStore
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByIdAndIdStore(int $idShipmentMethod, int $idStore): ?ShipmentMethodTransfer
     {
         /** @var \Orm\Zed\Shipment\Persistence\SpyShipmentMethod|null $salesShipmentMethodEntity */
@@ -243,11 +221,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             );
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByIdWithPricesAndCarrier(int $idShipmentMethod): ?ShipmentMethodTransfer
     {
         $salesShipmentMethodEntity = $this->queryMethodsWithMethodPricesAndCarrier()
@@ -349,13 +322,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
         return $shipmentMethodList;
     }
 
-    /**
-     * @param int $idShipmentMethod
-     * @param int $idStore
-     * @param int $idCurrency
-     *
-     * @return \Generated\Shared\Transfer\ShipmentPriceTransfer|null
-     */
     public function findShipmentMethodPrice(int $idShipmentMethod, int $idStore, int $idCurrency): ?ShipmentPriceTransfer
     {
         $shipmentMethodPriceEntity = $this->queryMethodPriceByShipmentMethodAndStoreCurrency(
@@ -376,11 +342,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             );
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function hasShipmentMethodByIdShipmentMethod(int $idShipmentMethod): bool
     {
         return $this->getFactory()
@@ -389,11 +350,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->exists();
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     public function hasActiveShipmentMethodByIdShipmentMethod(int $idShipmentMethod): bool
     {
         return $this->getFactory()
@@ -403,11 +359,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->exists();
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer|null
-     */
     public function findSalesOrderById(int $idSalesOrder): ?OrderTransfer
     {
         $salesOrderEntity = $this->getFactory()
@@ -424,11 +375,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->mapSalesOrderEntityToOrderTransfer($salesOrderEntity, new OrderTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentCarrierRequestTransfer $shipmentCarrierRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentCarrierTransfer|null
-     */
     public function findShipmentCarrier(ShipmentCarrierRequestTransfer $shipmentCarrierRequestTransfer): ?ShipmentCarrierTransfer
     {
         $shipmentCarrierQuery = $this->getFactory()->createShipmentCarrierQuery();
@@ -556,17 +502,11 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->endUse();
     }
 
-    /**
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery
-     */
     protected function queryMethods(): SpyShipmentMethodQuery
     {
         return $this->getFactory()->createShipmentMethodQuery();
     }
 
-    /**
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery
-     */
     protected function queryActiveMethodsWithMethodPricesAndCarrier(): SpyShipmentMethodQuery
     {
         return $this->queryMethodsWithMethodPricesAndCarrier()
@@ -601,13 +541,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
         return $this->expandShipmentMethodEntitiesWithShipmentMethodPricesForStore($shipmentMethodEntities, $idStore);
     }
 
-    /**
-     * @param int $idShipmentMethod
-     * @param int $idStore
-     * @param int $idCurrency
-     *
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPriceQuery
-     */
     protected function queryMethodPriceByShipmentMethodAndStoreCurrency(
         int $idShipmentMethod,
         int $idStore,
@@ -619,9 +552,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->filterByFkCurrency($idCurrency);
     }
 
-    /**
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethodPriceQuery
-     */
     protected function queryMethodPrices(): SpyShipmentMethodPriceQuery
     {
         return $this->getFactory()->createShipmentMethodPriceQuery();
@@ -660,11 +590,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
         return $itemTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     public function isShipmentMethodUniqueForCarrier(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         $shipmentMethodTransfer->requireName()
@@ -678,11 +603,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->exists();
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\StoreRelationTransfer
-     */
     public function getStoreRelationByIdShipmentMethod(int $idShipmentMethod): StoreRelationTransfer
     {
         $shipmentMethodStoreEntities = $this->getFactory()
@@ -713,11 +633,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             ->mapShipmentCarrierEntityCollectionToShipmentCarrierTransferCollection($shipmentCarrierEntityCollection, []);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentCriteriaTransfer $salesShipmentCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentCollectionTransfer
-     */
     public function getSalesShipmentCollection(
         SalesShipmentCriteriaTransfer $salesShipmentCriteriaTransfer
     ): SalesShipmentCollectionTransfer {
@@ -751,11 +666,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
             );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function getShipmentMethodCollection(
         ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
     ): ShipmentMethodCollectionTransfer {
@@ -960,12 +870,6 @@ class ShipmentRepository extends AbstractRepository implements ShipmentRepositor
         return $query;
     }
 
-    /**
-     * @param \Propel\Runtime\ActiveQuery\ModelCriteria $query
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function applyPaginationToQuery(
         ModelCriteria $query,
         PaginationTransfer $paginationTransfer

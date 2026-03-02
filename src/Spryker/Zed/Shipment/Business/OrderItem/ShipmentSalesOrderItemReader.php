@@ -17,9 +17,6 @@ class ShipmentSalesOrderItemReader implements ShipmentSalesOrderItemReaderInterf
      */
     protected $shipmentRepository;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     */
     public function __construct(ShipmentRepositoryInterface $shipmentRepository)
     {
         $this->shipmentRepository = $shipmentRepository;

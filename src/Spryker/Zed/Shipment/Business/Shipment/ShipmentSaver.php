@@ -45,12 +45,6 @@ class ShipmentSaver implements ShipmentSaverInterface
      */
     protected $shipmentExpenseCreator;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Business\Checkout\MultiShipmentOrderSaverInterface $shipmentOrderSaver
-     * @param \Spryker\Zed\Shipment\Business\ShipmentGroup\ShipmentMethodExpanderInterface $shipmentMethodExpander
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     * @param \Spryker\Zed\Shipment\Business\ShipmentExpense\ShipmentExpenseCreatorInterface $shipmentExpenseCreator
-     */
     public function __construct(
         MultiShipmentOrderSaverInterface $shipmentOrderSaver,
         ShipmentMethodExpanderInterface $shipmentMethodExpander,
@@ -63,12 +57,6 @@ class ShipmentSaver implements ShipmentSaverInterface
         $this->shipmentExpenseCreator = $shipmentExpenseCreator;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupResponseTransfer
-     */
     public function saveShipment(
         ShipmentGroupTransfer $shipmentGroupTransfer,
         OrderTransfer $orderTransfer
@@ -96,11 +84,6 @@ class ShipmentSaver implements ShipmentSaverInterface
             ->setShipmentGroup($shipmentGroupTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     protected function buildSaveOrderTransfer(OrderTransfer $orderTransfer): SaveOrderTransfer
     {
         return (new SaveOrderTransfer())
@@ -110,12 +93,6 @@ class ShipmentSaver implements ShipmentSaverInterface
             ->setOrderExpenses($orderTransfer->getExpenses());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     protected function getShippingExpenseTransfer(
         ShipmentTransfer $shipmentTransfer,
         OrderTransfer $orderTransfer
@@ -141,12 +118,6 @@ class ShipmentSaver implements ShipmentSaverInterface
         return $this->shipmentExpenseCreator->createShippingExpenseTransfer($shipmentTransfer, $orderTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function setShipmentMethod(
         ShipmentGroupTransfer $shipmentGroupTransfer,
         OrderTransfer $orderTransfer
@@ -159,12 +130,6 @@ class ShipmentSaver implements ShipmentSaverInterface
         return $shipmentGroupTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return bool
-     */
     protected function isOrderShipmentUnique(ShipmentTransfer $shipmentTransfer, OrderTransfer $orderTransfer): bool
     {
         $itemTransfers = $orderTransfer->requireItems()->getItems();

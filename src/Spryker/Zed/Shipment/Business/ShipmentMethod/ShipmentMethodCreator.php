@@ -34,11 +34,6 @@ class ShipmentMethodCreator implements ShipmentMethodCreatorInterface
      */
     protected $storeRelationUpdater;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $shipmentEntityManager
-     * @param \Spryker\Zed\Shipment\Business\Model\MethodPriceInterface $methodPrice
-     * @param \Spryker\Zed\Shipment\Business\ShipmentMethod\ShipmentMethodStoreRelationUpdaterInterface $storeRelationUpdater
-     */
     public function __construct(
         ShipmentEntityManagerInterface $shipmentEntityManager,
         MethodPriceInterface $methodPrice,
@@ -49,11 +44,6 @@ class ShipmentMethodCreator implements ShipmentMethodCreatorInterface
         $this->storeRelationUpdater = $storeRelationUpdater;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return int|null
-     */
     public function createShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ?int
     {
         return $this->getTransactionHandler()->handleTransaction(function () use ($shipmentMethodTransfer): ?int {
@@ -61,11 +51,6 @@ class ShipmentMethodCreator implements ShipmentMethodCreatorInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return int|null
-     */
     protected function executeCreateShipmentMethodTransaction(ShipmentMethodTransfer $shipmentMethodTransfer): ?int
     {
         $shipmentMethodTransfer = $this->shipmentEntityManager->saveSalesShipmentMethod($shipmentMethodTransfer);

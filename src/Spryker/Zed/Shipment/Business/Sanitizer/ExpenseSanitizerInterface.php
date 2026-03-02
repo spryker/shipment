@@ -20,12 +20,5 @@ interface ExpenseSanitizerInterface
      */
     public function sanitizeExpenseSumValues(ExpenseTransfer $expenseTransfer): ExpenseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
-     * @param int $price
-     * @param string $priceMode
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function sanitizeShipmentExpensePricesByPriceMode(ExpenseTransfer $shipmentExpenseTransfer, int $price, string $priceMode): ExpenseTransfer;
 }

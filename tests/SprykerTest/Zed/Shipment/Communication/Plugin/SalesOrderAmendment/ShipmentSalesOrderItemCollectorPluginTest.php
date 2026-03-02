@@ -34,9 +34,6 @@ class ShipmentSalesOrderItemCollectorPluginTest extends Unit
      */
     protected ShipmentCommunicationTester $tester;
 
-    /**
-     * @return void
-     */
     public function testAddsItemWithUpdatedShipmentToItemsToUpdateAndRemovesFromItemsToSkip(): void
     {
         // Arrange
@@ -68,9 +65,6 @@ class ShipmentSalesOrderItemCollectorPluginTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testDoesNotAddItemWithSameShipmentToItemsToUpdateAndDoesNotRemoveFromItemsToSkip(): void
     {
         // Arrange

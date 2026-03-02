@@ -40,12 +40,6 @@ class ShipmentMethodUpdater implements ShipmentMethodUpdaterInterface
      */
     protected $storeRelationUpdater;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $shipmentEntityManager
-     * @param \Spryker\Zed\Shipment\Business\Model\MethodPriceInterface $methodPrice
-     * @param \Spryker\Zed\Shipment\Business\ShipmentMethod\ShipmentMethodStoreRelationUpdaterInterface $storeRelationUpdater
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentEntityManagerInterface $shipmentEntityManager,
@@ -58,11 +52,6 @@ class ShipmentMethodUpdater implements ShipmentMethodUpdaterInterface
         $this->storeRelationUpdater = $storeRelationUpdater;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     public function updateShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         return $this->getTransactionHandler()->handleTransaction(function () use ($shipmentMethodTransfer): bool {
@@ -70,11 +59,6 @@ class ShipmentMethodUpdater implements ShipmentMethodUpdaterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     protected function executeUpdateShipmentMethodTransaction(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         $idShipmentMethod = $shipmentMethodTransfer->getIdShipmentMethod();

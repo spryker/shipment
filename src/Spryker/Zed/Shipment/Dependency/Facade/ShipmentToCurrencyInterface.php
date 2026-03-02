@@ -11,17 +11,7 @@ use Generated\Shared\Transfer\CurrencyTransfer;
 
 interface ShipmentToCurrencyInterface
 {
-    /**
-     * @param string $isoCode
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function fromIsoCode(string $isoCode): CurrencyTransfer;
 
-    /**
-     * @param int $idCurrency
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getByIdCurrency(int $idCurrency): CurrencyTransfer;
 }

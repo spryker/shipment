@@ -12,23 +12,11 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface ShipmentMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function mapShipmentMethodTransferToExpenseTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ExpenseTransfer $expenseTransfer
     ): ExpenseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function mapShipmentMethodTransferToShipmentExpenseTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ExpenseTransfer $shipmentExpenseTransfer

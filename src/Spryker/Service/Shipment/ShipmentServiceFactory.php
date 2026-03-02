@@ -20,17 +20,11 @@ use Spryker\Service\Shipment\ShipmentHash\ShipmentHashGeneratorInterface;
  */
 class ShipmentServiceFactory extends AbstractServiceFactory
 {
-    /**
-     * @return \Spryker\Service\Shipment\Items\ItemsGrouperInterface
-     */
     public function createItemsGrouper(): ItemsGrouperInterface
     {
         return new ItemsGrouper($this->createShipmentHashGenerator());
     }
 
-    /**
-     * @return \Spryker\Service\Shipment\ShipmentHash\ShipmentHashGeneratorInterface
-     */
     public function createShipmentHashGenerator(): ShipmentHashGeneratorInterface
     {
         return new ShipmentHashGenerator(
@@ -40,17 +34,11 @@ class ShipmentServiceFactory extends AbstractServiceFactory
         );
     }
 
-    /**
-     * @return \Spryker\Service\Shipment\Dependency\Service\ShipmentToCustomerServiceInterface
-     */
     public function getCustomerService(): ShipmentToCustomerServiceInterface
     {
         return $this->getProvidedDependency(ShipmentDependencyProvider::SERVICE_CUSTOMER);
     }
 
-    /**
-     * @return \Spryker\Service\Shipment\Dependency\Service\ShipmentToUtilEncodingServiceInterface
-     */
     public function getUtilEncodingService(): ShipmentToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(ShipmentDependencyProvider::SERVICE_UTIL_ENCODING);

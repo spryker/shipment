@@ -24,12 +24,6 @@ use Propel\Runtime\Collection\ObjectCollection;
 
 class ShipmentMapper implements ShipmentMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment
-     */
     public function mapShipmentTransferToShipmentEntity(
         ShipmentTransfer $shipmentTransfer,
         SpySalesShipment $salesShipmentEntity
@@ -49,12 +43,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $salesShipmentEntity;
     }
 
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     public function mapShipmentEntityToShipmentTransfer(
         SpySalesShipment $salesShipmentEntity,
         ShipmentTransfer $shipmentTransfer
@@ -64,12 +52,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipment
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentEntityToShipmentMethodTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         SpySalesShipment $salesShipment
@@ -77,12 +59,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentMethodTransfer->fromArray($salesShipment->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentCarrierTransfer $shipmentCarrierTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipment
-     *
-     * @return \Generated\Shared\Transfer\ShipmentCarrierTransfer
-     */
     public function mapShipmentEntityToShipmentCarrierTransfer(
         ShipmentCarrierTransfer $shipmentCarrierTransfer,
         SpySalesShipment $salesShipment
@@ -90,12 +66,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentCarrierTransfer->setName($salesShipment->getCarrierName());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipment
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     public function mapShipmentEntityToShippingAddressTransfer(
         AddressTransfer $addressTransfer,
         SpySalesShipment $salesShipment
@@ -115,12 +85,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $addressTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     public function mapShipmentEntityToShipmentTransferWithDetails(
         SpySalesShipment $salesShipmentEntity,
         ShipmentTransfer $shipmentTransfer
@@ -140,12 +104,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Orm\Zed\Shipment\Persistence\SpyShipmentMethod $salesShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentMethodEntityToShipmentMethodTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         SpyShipmentMethod $salesShipmentMethod
@@ -153,12 +111,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentMethodTransfer->fromArray($salesShipmentMethod->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function mapShipmentTransferToShipmentMethodTransfer(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ShipmentTransfer $shipmentTransfer
@@ -166,12 +118,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $shipmentMethodTransfer->fromArray($shipmentTransfer->getMethod()->modifiedToArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\Country\Persistence\SpyCountry $countryEntity
-     * @param \Generated\Shared\Transfer\CountryTransfer $countryTransfer
-     *
-     * @return \Generated\Shared\Transfer\CountryTransfer
-     */
     public function mapCountryEntityToCountryTransfer(
         SpyCountry $countryEntity,
         CountryTransfer $countryTransfer
@@ -179,11 +125,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $countryTransfer->fromArray($countryEntity->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return bool
-     */
     protected function isAddressEmpty(AddressTransfer $addressTransfer): bool
     {
         foreach ($addressTransfer->toArray() as $addressValue) {
@@ -257,12 +198,6 @@ class ShipmentMapper implements ShipmentMapperInterface
         return $itemTransfers;
     }
 
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrderItem $salesOrderItemEntity
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     protected function mapSalesOrderItemEntityToItemTransfer(SpySalesOrderItem $salesOrderItemEntity, ItemTransfer $itemTransfer): ItemTransfer
     {
         return $itemTransfer->fromArray($salesOrderItemEntity->toArray(), true);

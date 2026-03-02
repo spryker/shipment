@@ -13,11 +13,6 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface ShipmentMethodExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function expandShipmentMethodTransfer(ShipmentMethodTransfer $shipmentMethodTransfer): ShipmentMethodTransfer;
 
     /**
@@ -27,20 +22,10 @@ interface ShipmentMethodExpanderInterface
      */
     public function expandShipmentMethodTransfers(array $shipmentMethodTransfers): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function expandShipmentMethodCollectionTransfer(
         ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer
     ): ShipmentMethodCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer $shipmentMethodsCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer
-     */
     public function expandShipmentMethodsCollectionTransfer(
         ShipmentMethodsCollectionTransfer $shipmentMethodsCollectionTransfer
     ): ShipmentMethodsCollectionTransfer;

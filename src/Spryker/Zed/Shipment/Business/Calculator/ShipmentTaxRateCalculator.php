@@ -54,12 +54,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
      */
     protected ShipmentToStoreInterface $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Dependency\ShipmentToTaxInterface $taxFacade
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToStoreInterface $storeFacade
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentToTaxInterface $taxFacade,
@@ -83,11 +77,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         $quoteTransfer->setExpenses($expenseTransfers);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return \Generated\Shared\Transfer\CalculableObjectTransfer
-     */
     public function recalculateByCalculableObject(CalculableObjectTransfer $calculableObjectTransfer): CalculableObjectTransfer
     {
         $expenseTransfers = $this->recalculateByItemTransfersAndExpenseTransfers($calculableObjectTransfer->getItems(), $calculableObjectTransfer->getExpenses(), $calculableObjectTransfer->getStore());
@@ -157,12 +146,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\TaxSetTransfer $taxSetTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function setTaxRateForShipmentGroupItems(
         ShipmentGroupTransfer $shipmentGroupTransfer,
         TaxSetTransfer $taxSetTransfer
@@ -182,12 +165,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $shipmentGroupTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\TaxSetTransfer
-     */
     protected function getTaxSetEffectiveRate(ShipmentTransfer $shipmentTransfer, ?StoreTransfer $storeTransfer = null): TaxSetTransfer
     {
         $taxSetTransfer = $this->findTaxSet($shipmentTransfer, $storeTransfer);
@@ -200,9 +177,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $taxSetTransfer;
     }
 
-    /**
-     * @return float
-     */
     protected function getDefaultTaxRate(): float
     {
         if ($this->defaultTaxRate === null) {
@@ -212,12 +186,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $this->defaultTaxRate;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return \Generated\Shared\Transfer\TaxSetTransfer|null
-     */
     protected function findTaxSet(ShipmentTransfer $shipmentTransfer, ?StoreTransfer $storeTransfer = null): ?TaxSetTransfer
     {
         $countryIso2Code = $this->getCountryIso2Code($shipmentTransfer->getShippingAddress(), $storeTransfer);
@@ -229,12 +197,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
             );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer|null $addressTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return string
-     */
     protected function getCountryIso2Code(?AddressTransfer $addressTransfer, ?StoreTransfer $storeTransfer = null): string
     {
         if ($addressTransfer && $addressTransfer->getIso2Code() !== null) {
@@ -244,11 +206,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $this->getDefaultTaxCountryIso2Code($storeTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return string
-     */
     protected function getDefaultTaxCountryIso2Code(?StoreTransfer $storeTransfer = null): string
     {
         if ($this->defaultTaxCountryIso2Code === null) {

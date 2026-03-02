@@ -51,9 +51,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
      */
     protected $shipmentMethodTransferList;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -126,9 +123,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         }
     }
 
-    /**
-     * @return array
-     */
     public function taxRateCalculationShouldUseItemLevelShippingAddressAndShipmentDataProvider(): array
     {
         return [
@@ -138,9 +132,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithItemLevelShippingAddressesToFranceWithTaxRate20(): array
     {
         $quoteTransfer = (new QuoteBuilder())->build();
@@ -149,9 +140,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         return [$quoteTransfer, [$itemTransfer->getSku() => 20.00]];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithItemLevelShippingAddressesToFranceWithTaxRate20AndGermanyWithTaxRate15(): array
     {
         $quoteTransfer = (new QuoteBuilder())->build();
@@ -161,9 +149,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         return [$quoteTransfer, [$itemTransfer1->getSku() => 20.00, $itemTransfer2->getSku() => 15.00]];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithItemLevelShippingAddressesToMarsWithTaxRateUndefined(): array
     {
         $quoteTransfer = (new QuoteBuilder())->build();
@@ -172,12 +157,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         return [$quoteTransfer, [$itemTransfer->getSku() => 0.00]];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param string $iso2Code
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     protected function addNewItemAndExpenseIntoQuoteTransfer(QuoteTransfer $quoteTransfer, string $iso2Code): ItemTransfer
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => $iso2Code]));
@@ -225,12 +204,6 @@ class ShipmentTaxRateCalculatorForItemLevelShipmentTest extends Unit
         return $bridgeMock;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer|null
-     */
     protected function findQuoteExpenseByShipment(QuoteTransfer $quoteTransfer, ShipmentTransfer $shipmentTransfer): ?ExpenseTransfer
     {
         $itemShipmentKey = $this->tester->getShipmentService()->getShipmentHashKey($shipmentTransfer);

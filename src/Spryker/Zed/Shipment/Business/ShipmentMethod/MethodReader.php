@@ -91,12 +91,6 @@ class MethodReader implements MethodReaderInterface
         $this->shipmentMethodExpander = $shipmentMethodExpander;
     }
 
-    /**
-     * @param int $idShipmentMethod
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findAvailableMethodById(int $idShipmentMethod, QuoteTransfer $quoteTransfer): ?ShipmentMethodTransfer
     {
         $idStore = $this->getIdStoreFromQuote($quoteTransfer);
@@ -147,11 +141,6 @@ class MethodReader implements MethodReaderInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer
-     */
     public function getAvailableMethodsByShipment(QuoteTransfer $quoteTransfer): ShipmentMethodsCollectionTransfer
     {
         $shipmentGroupCollection = $this->shipmentService->groupItemsByShipment($quoteTransfer->getItems());
@@ -297,13 +286,6 @@ class MethodReader implements MethodReaderInterface
         return $shipmentMethodsTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     protected function prepareAvailableShipmentMethod(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,
@@ -334,14 +316,6 @@ class MethodReader implements MethodReaderInterface
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param int|null $storeCurrencyPrice
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     protected function transformShipmentMethod(
         QuoteTransfer $quoteTransfer,
         ShipmentMethodTransfer $shipmentMethodTransfer,
@@ -383,11 +357,6 @@ class MethodReader implements MethodReaderInterface
         return new ShipmentGroupTransfer();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return int
-     */
     protected function getIdStoreFromQuote(QuoteTransfer $quoteTransfer): int
     {
         $quoteTransfer->requireStore();
@@ -417,12 +386,6 @@ class MethodReader implements MethodReaderInterface
         return true;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param int $idShipmentMethod
-     *
-     * @return bool
-     */
     protected function isSameShipmentMethod(ShipmentGroupTransfer $shipmentGroupTransfer, int $idShipmentMethod): bool
     {
         return $shipmentGroupTransfer->getShipment()

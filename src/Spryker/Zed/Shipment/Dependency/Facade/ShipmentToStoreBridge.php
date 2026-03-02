@@ -24,9 +24,6 @@ class ShipmentToStoreBridge implements ShipmentToStoreInterface
         $this->storeFacade = $storeFacade;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function getCurrentStore(): StoreTransfer
     {
         return $this->storeFacade->getCurrentStore();
@@ -40,11 +37,6 @@ class ShipmentToStoreBridge implements ShipmentToStoreInterface
         return $this->storeFacade->getAllStores();
     }
 
-    /**
-     * @param string $storeName
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function getStoreByName(string $storeName): StoreTransfer
     {
         return $this->storeFacade->getStoreByName($storeName);

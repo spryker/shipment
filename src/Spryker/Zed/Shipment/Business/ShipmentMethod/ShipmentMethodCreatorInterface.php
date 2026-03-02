@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\ShipmentMethodTransfer;
 
 interface ShipmentMethodCreatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return int|null
-     */
     public function createShipmentMethod(ShipmentMethodTransfer $shipmentMethodTransfer): ?int;
 }

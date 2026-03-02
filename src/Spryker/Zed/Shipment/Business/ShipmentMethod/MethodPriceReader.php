@@ -63,13 +63,6 @@ class MethodPriceReader implements MethodPriceReaderInterface
         $this->currencyFacade = $currencyFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return int|null
-     */
     public function findShipmentGroupShippingPrice(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,
@@ -82,23 +75,11 @@ class MethodPriceReader implements MethodPriceReaderInterface
         return $this->getPricePluginValue($shipmentMethodTransfer, $shipmentGroupTransfer, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     protected function isSetPricePlugin(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         return isset($this->shipmentMethodPricePlugins[$shipmentMethodTransfer->getPricePlugin()]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return int|null
-     */
     protected function getPricePluginValue(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         ?ShipmentGroupTransfer $shipmentGroupTransfer,
@@ -120,12 +101,6 @@ class MethodPriceReader implements MethodPriceReaderInterface
         return $pricePlugin->getPrice($shipmentGroupTransfer, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return int|null
-     */
     protected function findShipmentMethodPriceValue(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer
@@ -156,11 +131,6 @@ class MethodPriceReader implements MethodPriceReaderInterface
         return $this->getPriceByMode($quoteTransfer, $shipmentMethodPriceTransfer);
     }
 
-    /**
-     * @param string $currencyIsoCode
-     *
-     * @return int|null
-     */
     protected function getIdCurrencyByIsoCode(string $currencyIsoCode): ?int
     {
         if (!isset(static::$idCurrencyCache[$currencyIsoCode])) {
@@ -182,12 +152,6 @@ class MethodPriceReader implements MethodPriceReaderInterface
         return $this->shipmentMethodPricePlugins[$shipmentMethodTransfer->getPricePlugin()];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentPriceTransfer $shipmentMethodPriceTransfer
-     *
-     * @return int|null
-     */
     protected function getPriceByMode(QuoteTransfer $quoteTransfer, ShipmentPriceTransfer $shipmentMethodPriceTransfer): ?int
     {
         return $quoteTransfer->getPriceMode() === ShipmentConstants::PRICE_MODE_GROSS ?
@@ -195,11 +159,6 @@ class MethodPriceReader implements MethodPriceReaderInterface
             $shipmentMethodPriceTransfer->getDefaultNetPrice();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     protected function getStore(QuoteTransfer $quoteTransfer): StoreTransfer
     {
         $storeTransfer = $quoteTransfer->getStore();

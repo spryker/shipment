@@ -32,10 +32,6 @@ class ShipmentMethodTransformer implements ShipmentMethodTransformerInterface
      */
     protected static $currencyCache = [];
 
-    /**
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCurrencyInterface $currencyFacade
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface $shipmentQueryContainer
-     */
     public function __construct(ShipmentToCurrencyInterface $currencyFacade, ShipmentQueryContainerInterface $shipmentQueryContainer)
     {
         $this->currencyFacade = $currencyFacade;

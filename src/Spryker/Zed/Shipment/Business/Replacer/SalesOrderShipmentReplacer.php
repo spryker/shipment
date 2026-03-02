@@ -23,12 +23,6 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
 {
     use TransactionTrait;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $shipmentEntityManager
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToSalesFacadeInterface $salesFacade
-     * @param \Spryker\Zed\Shipment\Business\Checkout\MultiShipmentOrderSaverInterface $multiShipmentOrderSaver
-     */
     public function __construct(
         protected ShipmentEntityManagerInterface $shipmentEntityManager,
         protected ShipmentRepositoryInterface $shipmentRepository,
@@ -37,12 +31,6 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
     ) {
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     public function replaceSalesOrderShipment(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): void
     {
         $saveOrderTransfer->requireIdSalesOrder();
@@ -52,12 +40,6 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     protected function executeReplaceSalesOrderShipmentTransaction(
         QuoteTransfer $quoteTransfer,
         SaveOrderTransfer $saveOrderTransfer
@@ -71,11 +53,6 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
         $this->multiShipmentOrderSaver->saveSalesOrderShipment($quoteTransfer, $saveOrderTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     protected function unsetFkSalesShipmentForSalesOrderItems(SaveOrderTransfer $saveOrderTransfer): void
     {
         $salesOrderItemIds = $this->shipmentRepository->getItemIdsGroupedByShipmentIds(
@@ -94,11 +71,6 @@ class SalesOrderShipmentReplacer implements SalesOrderShipmentReplacerInterface
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     protected function deleteSalesOrderShipmentExpenses(SaveOrderTransfer $saveOrderTransfer): void
     {
         $salesExpenseCollectionDeleteCriteriaTransfer = (new SalesExpenseCollectionDeleteCriteriaTransfer())

@@ -26,10 +26,6 @@ class ShipmentMethodStoreRelationUpdater implements ShipmentMethodStoreRelationU
      */
     protected $shipmentRepository;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $entityManager
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentEntityManagerInterface $entityManager
@@ -38,11 +34,6 @@ class ShipmentMethodStoreRelationUpdater implements ShipmentMethodStoreRelationU
         $this->shipmentRepository = $shipmentRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreRelationTransfer $storeRelationTransfer
-     *
-     * @return void
-     */
     public function update(StoreRelationTransfer $storeRelationTransfer): void
     {
         $this->getTransactionHandler()->handleTransaction(function () use ($storeRelationTransfer) {
@@ -50,11 +41,6 @@ class ShipmentMethodStoreRelationUpdater implements ShipmentMethodStoreRelationU
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\StoreRelationTransfer $storeRelationTransfer
-     *
-     * @return void
-     */
     protected function executeUpdateStoreRelationTransaction(StoreRelationTransfer $storeRelationTransfer): void
     {
         $storeRelationTransfer->requireIdEntity();

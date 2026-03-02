@@ -31,11 +31,6 @@ class ShipmentGroupCreator implements ShipmentGroupCreatorInterface
      */
     protected $salesFacade;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToSalesFacadeInterface $salesFacade
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentServiceInterface $shipmentService,
@@ -62,11 +57,6 @@ class ShipmentGroupCreator implements ShipmentGroupCreatorInterface
         return $this->addShipmentHashKey($shipmentGroupTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function expandShipmentTransfer(
         ShipmentGroupTransfer $shipmentGroupTransfer
     ): ShipmentGroupTransfer {
@@ -117,11 +107,6 @@ class ShipmentGroupCreator implements ShipmentGroupCreatorInterface
         return $shipmentGroupTransfer->setItems($items);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function addShipmentHashKey(ShipmentGroupTransfer $shipmentGroupTransfer): ShipmentGroupTransfer
     {
         $shipmentTransfer = $shipmentGroupTransfer->requireShipment()->getShipment();

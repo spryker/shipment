@@ -105,9 +105,6 @@ class ShipmentPersistenceWithItemsTest extends Unit
         }
     }
 
-    /**
-     * @return array
-     */
     public function shipmentOrderSaverShouldUseQuoteLevelShipmentAndItemsDataProvider(): array
     {
         return [
@@ -115,9 +112,6 @@ class ShipmentPersistenceWithItemsTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function shipmentOrderSaverShouldUseMultipleShipmentsWithItemsDataProvider(): array
     {
         return [
@@ -126,9 +120,6 @@ class ShipmentPersistenceWithItemsTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithQuoteLevelShipmentAnd2ItemsToFrance(): array
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -152,9 +143,6 @@ class ShipmentPersistenceWithItemsTest extends Unit
         return [$quoteTransfer];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAnd1ItemToFrance(): array
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -178,9 +166,6 @@ class ShipmentPersistenceWithItemsTest extends Unit
         return [$quoteTransfer, 1];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAnd2ItemsToFranceAnd1ItemToGermany(): array
     {
         $addressBuilder1 = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));

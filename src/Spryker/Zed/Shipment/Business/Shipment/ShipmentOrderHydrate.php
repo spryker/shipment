@@ -29,10 +29,6 @@ class ShipmentOrderHydrate implements ShipmentOrderHydrateInterface
      */
     protected $salesFacade;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToSalesFacadeInterface $salesFacade
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentToSalesFacadeInterface $salesFacade
@@ -98,12 +94,6 @@ class ShipmentOrderHydrate implements ShipmentOrderHydrateInterface
         return $orderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function addShipmentToOrderItems(OrderTransfer $orderTransfer, ShipmentTransfer $shipmentTransfer): OrderTransfer
     {
         foreach ($orderTransfer->getItems() as $itemTransfer) {
@@ -281,11 +271,6 @@ class ShipmentOrderHydrate implements ShipmentOrderHydrateInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function sortOrderItemsByIdShipment(OrderTransfer $orderTransfer): OrderTransfer
     {
         $orderItemTransfers = $orderTransfer->getItems()->getArrayCopy();
@@ -298,9 +283,6 @@ class ShipmentOrderHydrate implements ShipmentOrderHydrateInterface
         return $orderTransfer->setItems(new ArrayObject($orderItemTransfers));
     }
 
-    /**
-     * @return \Closure
-     */
     protected function getOrderItemTransfersSortCallback(): Closure
     {
         return function (ItemTransfer $itemTransferA, ItemTransfer $itemTransferB) {

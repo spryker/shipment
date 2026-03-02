@@ -32,9 +32,6 @@ class FindShipmentMethodByKeyTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -48,9 +45,6 @@ class FindShipmentMethodByKeyTest extends Unit
         $this->tester->getFacade()->findShipmentMethodByKey($shipmentMethodTransfer->getShipmentMethodKeyOrFail());
     }
 
-    /**
-     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface
-     */
     protected function getShipmentMethodCollectionExpanderPluginMock(): ShipmentMethodCollectionExpanderPluginInterface
     {
         $shipmentMethodCollectionExpanderPluginMock = $this

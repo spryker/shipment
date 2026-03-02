@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\CalculableObjectTransfer;
 
 interface ShipmentTotalCalculatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return void
-     */
     public function calculateShipmentTotal(CalculableObjectTransfer $calculableObjectTransfer): void;
 }

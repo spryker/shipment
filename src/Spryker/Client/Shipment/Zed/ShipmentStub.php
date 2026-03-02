@@ -18,19 +18,11 @@ class ShipmentStub implements ShipmentStubInterface
      */
     protected $zedStub;
 
-    /**
-     * @param \Spryker\Client\ZedRequest\ZedRequestClient $zedStub
-     */
     public function __construct(ZedRequestClient $zedStub)
     {
         $this->zedStub = $zedStub;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer
-     */
     public function getAvailableMethodsByShipment(QuoteTransfer $quoteTransfer): ShipmentMethodsCollectionTransfer
     {
         /** @var \Generated\Shared\Transfer\ShipmentMethodsCollectionTransfer $shipmentMethodsCollectionTransfer */
@@ -39,11 +31,6 @@ class ShipmentStub implements ShipmentStubInterface
         return $shipmentMethodsCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function expandQuoteWithShipmentGroups(QuoteTransfer $quoteTransfer): QuoteTransfer
     {
         /** @var \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer */

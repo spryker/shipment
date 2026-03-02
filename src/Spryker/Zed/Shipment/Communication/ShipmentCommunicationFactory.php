@@ -20,9 +20,6 @@ use Spryker\Zed\Shipment\ShipmentDependencyProvider;
  */
 class ShipmentCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Service\Shipment\ShipmentServiceInterface
-     */
     public function getShipmentService(): ShipmentServiceInterface
     {
         return $this->getProvidedDependency(ShipmentDependencyProvider::SERVICE_SHIPMENT);

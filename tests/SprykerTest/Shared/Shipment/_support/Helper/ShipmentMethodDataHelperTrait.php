@@ -11,9 +11,6 @@ use Codeception\Module;
 
 trait ShipmentMethodDataHelperTrait
 {
-    /**
-     * @return \SprykerTest\Shared\Shipment\Helper\ShipmentMethodDataHelper
-     */
     protected function getShipmentMethodDataHelper(): ShipmentMethodDataHelper
     {
         /** @var \SprykerTest\Shared\Shipment\Helper\ShipmentMethodDataHelper $shipmentMethodDataHelper */
@@ -22,10 +19,5 @@ trait ShipmentMethodDataHelperTrait
         return $shipmentMethodDataHelper;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return \Codeception\Module
-     */
     abstract protected function getModule(string $name): Module;
 }

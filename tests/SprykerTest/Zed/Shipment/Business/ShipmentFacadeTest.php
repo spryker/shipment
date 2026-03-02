@@ -130,9 +130,6 @@ class ShipmentFacadeTest extends Unit
      */
     protected $store;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -142,9 +139,6 @@ class ShipmentFacadeTest extends Unit
         ]);
     }
 
-    /**
-     * @return void
-     */
     public function testTransformShipmentMethodEntityToShipmentMethodTransfer(): void
     {
         // Arrange
@@ -225,9 +219,6 @@ class ShipmentFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return array
-     */
     public function priceModes(): array
     {
         return [
@@ -264,9 +255,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertSame($shipmentMethodsTransfer->getStoreCurrencyPrice(), $expectedPriceResult);
     }
 
-    /**
-     * @return void
-     */
     public function testFindAvailableMethodByIdShouldReturnShipmentMethodWithPricePluginById(): void
     {
         // Arrange
@@ -302,9 +290,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertSame(static::DEFAULT_PLUGIN_PRICE, $shipmentMethodsTransfer->getStoreCurrencyPrice());
     }
 
-    /**
-     * @return void
-     */
     public function testFindAvailableMethodByIdShouldReturnNullWhenShipmentMethodHasPricePluginAndNotAllQuoteItemsHaveShipment(): void
     {
         // Arrange
@@ -340,9 +325,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertNull($shipmentMethodsTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testFindAvailableMethodByIdExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -375,9 +357,6 @@ class ShipmentFacadeTest extends Unit
         $this->tester->getFacade()->findAvailableMethodById($shipmentMethodTransfer->getIdShipmentMethodOrFail(), $quoteTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testIsShipmentMethodActiveShouldReturnTrueWhenActive(): void
     {
         $this->tester->disableAllShipmentMethods();
@@ -391,9 +370,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertTrue($isActive);
     }
 
-    /**
-     * @return void
-     */
     public function testIsShipmentMethodActiveShouldReturnFalseWhenInActive(): void
     {
         $this->tester->disableAllShipmentMethods();
@@ -407,9 +383,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertFalse($isActive);
     }
 
-    /**
-     * @return void
-     */
     public function testFilterObsoleteShipmentExpensesShouldNotFilterExpensesWhenShipmentMethodIsSet(): void
     {
         // Arrange
@@ -427,9 +400,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertTrue($this->hasShipmentExpense($calculableObjectTransfer, $shipmentExpenseTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testFilterObsoleteShipmentExpensesShouldFilterShipmentExpensesWhenShipmentMethodIsNotSet(): void
     {
         // Arrange
@@ -449,9 +419,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertFalse($this->hasShipmentExpense($calculableObjectTransfer, $shipmentExpenseTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testFilterObsoleteShipmentExpensesShouldNotFilterNonShipmentExpensesWhenShipmentMethodIsNotSet(): void
     {
         // Arrange
@@ -477,9 +444,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertFalse($this->hasShipmentExpense($calculableObjectTransfer, $shipmentExpenseTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testDeleteShipmentMethodShouldRemoveShipmentMethodWithAllRelatedData(): void
     {
         //Arrange
@@ -495,9 +459,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertFalse($hasMethod, 'Previously deleted shipment method should not exists');
     }
 
-    /**
-     * @return array
-     */
     public function multiCurrencyPricesDataProvider(): array
     {
         return [
@@ -506,20 +467,11 @@ class ShipmentFacadeTest extends Unit
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $shipmentExpenseTransfer
-     *
-     * @return bool
-     */
     protected function hasShipmentExpense(CalculableObjectTransfer $calculableObjectTransfer, ExpenseTransfer $shipmentExpenseTransfer): bool
     {
         return in_array($shipmentExpenseTransfer, $calculableObjectTransfer->getExpenses()->getArrayCopy(), true);
     }
 
-    /**
-     * @return void
-     */
     protected function mockCurrencyFacade(): void
     {
         $currencyFacadeMock = $this->createMock(ShipmentToCurrencyInterface::class);
@@ -535,9 +487,6 @@ class ShipmentFacadeTest extends Unit
         $this->tester->setDependency(ShipmentDependencyProvider::FACADE_CURRENCY, $currencyFacadeMock);
     }
 
-    /**
-     * @return array
-     */
     protected function createDefaultPriceList(): array
     {
         $priceList = [
@@ -556,9 +505,6 @@ class ShipmentFacadeTest extends Unit
         return $priceList;
     }
 
-    /**
-     * @return void
-     */
     public function testIsNewShipmentMethodUniqueForCarrierMethodWhichExistingMethodShouldReturnFalseWhenNotUnique(): void
     {
         $shipmentCarrierTransfer = $this->tester->haveShipmentCarrier();
@@ -578,9 +524,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertFalse($isShipmentMethodUniqueForCarrier);
     }
 
-    /**
-     * @return void
-     */
     public function testIsNewShipmentMethodUniqueForCarrierMethodWithNotExistingMethodShouldReturnTrueWhenUnique(): void
     {
         $shipmentExpenseTransfer = (new ShipmentMethodTransfer())
@@ -593,9 +536,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertTrue($isShipmentMethodUniqueForCarrier);
     }
 
-    /**
-     * @return void
-     */
     public function testIsShipmentMethodUniqueForCarrierMethodWithNotExistingMethodShouldReturnTrueWhenUnique(): void
     {
         $shipmentExpenseTransfer = (new ShipmentMethodTransfer())
@@ -609,9 +549,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertTrue($isShipmentMethodUniqueForCarrier);
     }
 
-    /**
-     * @return void
-     */
     public function testNoRenamingShipmentMethodUniqueForCarrierMethodShouldReturnTrue(): void
     {
         $shipmentCarrierTransfer = $this->tester->haveShipmentCarrier();
@@ -626,9 +563,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertTrue($isShipmentMethodUniqueForCarrier);
     }
 
-    /**
-     * @return void
-     */
     public function testShipmentCarrierByIdShouldReturnShipmentCarrier(): void
     {
         // Arrange
@@ -645,9 +579,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertNotNull($shipmentCarrierTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testFindShipmentCarrierByNameAndExcludedCarrierIdsShouldReturnValidShipmentCarrier(): void
     {
         // Arrange
@@ -670,9 +601,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertSame($foundShipmentCarrierTransfer->getIdShipmentCarrier(), $shipmentCarrierTransfer->getIdShipmentCarrier());
     }
 
-    /**
-     * @return void
-     */
     public function getAvailableMethodsByShipmentShouldReturnAvailableShipmentMethods(): void
     {
         // Arrange
@@ -696,9 +624,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertCount(1, $shipmentMethodsTransfer->getMethods());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAvailableMethodsByShipmentShouldReturnAvailableShipmentMethodsWithMultiplePrices(): void
     {
         // Arrange
@@ -734,9 +659,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertCount(2, $shipmentMethodTransfer->getPrices());
     }
 
-    /**
-     * @return void
-     */
     public function testGetAvailableMethodsByShipmentExecutesStackOfShipmentMethodCollectionExpanderPlugins(): void
     {
         // Arrange
@@ -774,9 +696,6 @@ class ShipmentFacadeTest extends Unit
         return $shipmentMethodPricePluginMock;
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollection(): void
     {
         // Arrange
@@ -794,9 +713,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertCount(2, $salesShipmentCollectionTransfer->getShipments());
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollectionFilteredByIdSalesShipment(): void
     {
         // Arrange
@@ -818,9 +734,6 @@ class ShipmentFacadeTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollectionWithOrderItemsWithCorrespondingSalesShipmentConditionsFlag(): void
     {
         // Arrange
@@ -852,9 +765,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertSame($itemTransfer->getGroupKeyOrFail(), $orderItemTransfer->getGroupKey());
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollectionSorted(): void
     {
         // Arrange
@@ -879,9 +789,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertSame($shipmentTransfer1->getIdSalesShipmentOrFail(), $shipmentCollectionIterator->current()->getIdSalesShipment());
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollectionPaginatedByLimitAndOffset(): void
     {
         // Arrange
@@ -903,9 +810,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertCount(1, $salesShipmentCollectionTransfer->getShipments());
     }
 
-    /**
-     * @return void
-     */
     public function testGetSalesShipmentCollectionShouldReturnSalesShipmentCollectionPaginatedByPageAndMaxPerPage(): void
     {
         // Arrange
@@ -927,9 +831,6 @@ class ShipmentFacadeTest extends Unit
         $this->assertCount(1, $salesShipmentCollectionTransfer->getShipments());
     }
 
-    /**
-     * @return \Spryker\Zed\ShipmentExtension\Dependency\Plugin\ShipmentMethodCollectionExpanderPluginInterface
-     */
     protected function getShipmentMethodCollectionExpanderPluginMock(): ShipmentMethodCollectionExpanderPluginInterface
     {
         $shipmentMethodCollectionExpanderPluginMock = $this

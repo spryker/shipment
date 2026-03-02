@@ -39,9 +39,6 @@ class ShipmentRepositoryTest extends Unit
      */
     protected $shipmentRepository;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -49,9 +46,6 @@ class ShipmentRepositoryTest extends Unit
         $this->shipmentRepository = new ShipmentRepository();
     }
 
-    /**
-     * @return void
-     */
     public function testGetActiveShipmentMethodsForStoreReturnsCorrectShipmentMethods(): void
     {
         // Arrange

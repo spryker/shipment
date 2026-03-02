@@ -26,22 +26,12 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
      */
     protected $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Business\ShipmentGroup\ShipmentFetcherInterface $shipmentFetcher
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToStoreInterface $storeFacade
-     */
     public function __construct(ShipmentFetcherInterface $shipmentFetcher, ShipmentToStoreInterface $storeFacade)
     {
         $this->shipmentFetcher = $shipmentFetcher;
         $this->storeFacade = $storeFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function expand(ShipmentMethodTransfer $shipmentMethodTransfer, OrderTransfer $orderTransfer): ShipmentMethodTransfer
     {
         $orderTransfer->requireStore()
@@ -73,12 +63,6 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
         return $newShipmentTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentPriceTransfer $shipmentMethodPriceTransfer
-     *
-     * @return int|null
-     */
     protected function getPrice(OrderTransfer $orderTransfer, ShipmentPriceTransfer $shipmentMethodPriceTransfer): ?int
     {
         return $orderTransfer->getPriceMode() === ShipmentConstants::PRICE_MODE_GROSS ?
@@ -86,11 +70,6 @@ class ShipmentMethodExpander implements ShipmentMethodExpanderInterface
             $shipmentMethodPriceTransfer->getDefaultNetPrice();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     protected function getOrderStore(OrderTransfer $orderTransfer): StoreTransfer
     {
         $storeTransfer = $this->storeFacade->getStoreByName($orderTransfer->getStore());

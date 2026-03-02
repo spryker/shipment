@@ -24,25 +24,16 @@ class ShipmentToTaxBridge implements ShipmentToTaxInterface
         $this->taxFacade = $taxFacade;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultTaxCountryIso2Code(): string
     {
         return $this->taxFacade->getDefaultTaxCountryIso2Code();
     }
 
-    /**
-     * @return float
-     */
     public function getDefaultTaxRate(): float
     {
         return $this->taxFacade->getDefaultTaxRate();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\TaxSetCollectionTransfer
-     */
     public function getTaxSets(): TaxSetCollectionTransfer
     {
         return $this->taxFacade->getTaxSets();

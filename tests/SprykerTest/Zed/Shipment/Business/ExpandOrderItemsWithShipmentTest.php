@@ -28,9 +28,6 @@ class ExpandOrderItemsWithShipmentTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandOrderItemsWithShipmentShouldReturnExpandedItems(): void
     {
         // Arrange
@@ -56,9 +53,6 @@ class ExpandOrderItemsWithShipmentTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testExpandOrderItemsWithShipmentShouldReturnSameItemsWhenShipmentMissed(): void
     {
         // Arrange
@@ -84,9 +78,6 @@ class ExpandOrderItemsWithShipmentTest extends Unit
         }
     }
 
-    /**
-     * @return void
-     */
     public function testExpandOrderItemsWithShipmentShouldReturnEmptyArrayWhenOrderItemsMissed(): void
     {
         // Act

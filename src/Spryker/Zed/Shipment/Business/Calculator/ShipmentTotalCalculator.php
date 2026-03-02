@@ -14,11 +14,6 @@ use Spryker\Shared\Shipment\ShipmentConfig as SharedShipmentConfig;
 
 class ShipmentTotalCalculator implements ShipmentTotalCalculatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return void
-     */
     public function calculateShipmentTotal(CalculableObjectTransfer $calculableObjectTransfer): void
     {
         $shipmentTotal = $this->getShipmentTotalSumPrice($calculableObjectTransfer->getExpenses());

@@ -45,11 +45,6 @@ class ShipmentOrderSaver implements ShipmentOrderSaverInterface
      */
     protected $shipmentRepository;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentEntityManagerInterface $entityManager
-     * @param \Spryker\Zed\Shipment\Business\Sanitizer\ExpenseSanitizerInterface $expenseSanitizer
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     */
     public function __construct(
         ShipmentEntityManagerInterface $entityManager,
         ExpenseSanitizerInterface $expenseSanitizer,
@@ -75,12 +70,6 @@ class ShipmentOrderSaver implements ShipmentOrderSaverInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     protected function saveOrderShipmentTransaction(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): void
     {
         $salesOrderTransfer = $this->findSalesOrderByIdSalesOrder($saveOrderTransfer->getIdSalesOrder());
@@ -99,24 +88,12 @@ class ShipmentOrderSaver implements ShipmentOrderSaverInterface
         $this->entityManager->updateFkShipmentForOrderItems($saveOrderTransfer->getOrderItems(), $shipmentTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return void
-     */
     protected function assertShipmentRequirements(QuoteTransfer $quoteTransfer): void
     {
         $quoteTransfer->requireShipment();
         $quoteTransfer->getShipment()->requireMethod();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function addExpensesToOrder(
         QuoteTransfer $quoteTransfer,
         OrderTransfer $orderTransfer,
@@ -147,13 +124,6 @@ class ShipmentOrderSaver implements ShipmentOrderSaverInterface
         return $this->shipmentRepository->findSalesOrderById($idSalesOrder);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $salesOrderExpenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     protected function setCheckoutResponseExpenses(
         SaveOrderTransfer $saveOrderTransfer,
         ExpenseTransfer $expenseTransfer,
@@ -166,13 +136,6 @@ class ShipmentOrderSaver implements ShipmentOrderSaverInterface
         return $saveOrderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $salesOrderTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer|null
-     */
     protected function createSalesShipment(
         QuoteTransfer $quoteTransfer,
         OrderTransfer $salesOrderTransfer,

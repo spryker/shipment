@@ -45,12 +45,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
      */
     protected ShipmentToStoreInterface $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface $shipmentQueryContainer
-     * @param \Spryker\Zed\Shipment\Dependency\ShipmentToTaxInterface $taxFacade
-     * @param \Spryker\Service\Shipment\ShipmentServiceInterface $shipmentService
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToStoreInterface $storeFacade
-     */
     public function __construct(
         ShipmentQueryContainerInterface $shipmentQueryContainer,
         ShipmentToTaxInterface $taxFacade,
@@ -86,11 +80,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         $quoteTransfer->setExpenses($expenseTransfers);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return \Generated\Shared\Transfer\CalculableObjectTransfer
-     */
     public function recalculateByCalculableObject(CalculableObjectTransfer $calculableObjectTransfer): CalculableObjectTransfer
     {
         if ($calculableObjectTransfer->getShipment() === null || $calculableObjectTransfer->getShipment()->getMethod() === null) {
@@ -134,13 +123,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $expenseTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\AddressTransfer|null $shippingAddressTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return float
-     */
     protected function getTaxRate(ShipmentTransfer $shipmentTransfer, ?AddressTransfer $shippingAddressTransfer, ?StoreTransfer $storeTransfer = null): float
     {
         $countryIsoCode = $this->getCountryIso2Code($shippingAddressTransfer, $storeTransfer);
@@ -173,12 +155,6 @@ class ShipmentTaxRateCalculator implements CalculatorInterface
         return $taxSet;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer|null $shippingAddressTransfer
-     * @param \Generated\Shared\Transfer\StoreTransfer|null $storeTransfer
-     *
-     * @return string
-     */
     protected function getCountryIso2Code(?AddressTransfer $shippingAddressTransfer, ?StoreTransfer $storeTransfer = null): string
     {
         if ($shippingAddressTransfer) {

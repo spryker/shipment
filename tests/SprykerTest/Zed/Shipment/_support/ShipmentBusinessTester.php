@@ -66,17 +66,11 @@ class ShipmentBusinessTester extends Actor
      */
     protected const FAKE_EXPENSE_TYPE = 'FAKE_EXPENSE_TYPE';
 
-    /**
-     * @return \Spryker\Zed\Shipment\Business\ShipmentFacadeInterface
-     */
     public function getShipmentFacade(): ShipmentFacadeInterface
     {
         return $this->getLocator()->shipment()->facade();
     }
 
-    /**
-     * @return \Spryker\Service\Shipment\ShipmentServiceInterface
-     */
     public function getShipmentService(): ShipmentServiceInterface
     {
         return $this->getLocator()->shipment()->service();
@@ -138,9 +132,6 @@ class ShipmentBusinessTester extends Actor
         }
     }
 
-    /**
-     * @return void
-     */
     public function disableAllShipmentMethods(): void
     {
         $this->updateShipmentMethod(['is_active' => false]);
@@ -161,20 +152,11 @@ class ShipmentBusinessTester extends Actor
         return $shipmentMethodTransferCollection;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultStoreName(): string
     {
         return $this->getLocator()->store()->facade()->getCurrentStore()->getName();
     }
 
-    /**
-     * @param float $currentTaxRate
-     * @param string $iso2Code
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function createShipmentMethodWithTaxSet(float $currentTaxRate, string $iso2Code): ShipmentMethodTransfer
     {
         $idCountry = SpyCountryQuery::create()->filterByIso2Code($iso2Code)->findOne()->getIdCountry();
@@ -199,11 +181,6 @@ class ShipmentBusinessTester extends Actor
         return $this->haveShipmentMethod([ShipmentMethodTransfer::FK_TAX_SET => $taxSetTransfer->getIdTaxSet()]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer|null $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
     public function createProductWithTaxSetInDb(?ShipmentMethodTransfer $shipmentMethodTransfer): ProductAbstractTransfer
     {
         $productAbstractOverride = [];
@@ -231,12 +208,6 @@ class ShipmentBusinessTester extends Actor
         return $shipmentMethodTransferList[$countryIso2Code];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param string|null $testStateMachineProcessName
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function createOrderWithoutShipment(QuoteTransfer $quoteTransfer, ?string $testStateMachineProcessName = 'Test01'): SaveOrderTransfer
     {
         foreach ($quoteTransfer->getItems() as $itemTransfer) {
@@ -247,12 +218,6 @@ class ShipmentBusinessTester extends Actor
         return $savedOrderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param string|null $testStateMachineProcessName
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function createOrderWithMultiShipment(QuoteTransfer $quoteTransfer, ?string $testStateMachineProcessName = 'Test01'): SaveOrderTransfer
     {
         foreach ($quoteTransfer->getItems() as $itemTransfer) {
@@ -267,11 +232,6 @@ class ShipmentBusinessTester extends Actor
         return $savedOrderTransfer;
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function getOrderTransferByIdSalesOrder(int $idSalesOrder): OrderTransfer
     {
         $orderTransfer = $this->getLocator()->sales()->facade()->getOrderByIdSalesOrder($idSalesOrder);
@@ -280,11 +240,6 @@ class ShipmentBusinessTester extends Actor
         return $orderTransfer;
     }
 
-    /**
-     * @param array $originalQuoteSeed
-     *
-     * @return \Generated\Shared\Transfer\CalculableObjectTransfer
-     */
     public function buildCalculableObjectTransfer(array $originalQuoteSeed = []): CalculableObjectTransfer
     {
         $shipmentTransfer = (new ShipmentBuilder())
@@ -303,13 +258,6 @@ class ShipmentBusinessTester extends Actor
             ->setOriginalQuote($originalQuoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param string $iso2Code
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function addNewItemIntoQuoteTransfer(
         QuoteTransfer $quoteTransfer,
         string $iso2Code,
@@ -330,9 +278,6 @@ class ShipmentBusinessTester extends Actor
         return $quoteTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CalculableObjectTransfer
-     */
     public function createCalculableObjectWithFakeExpenses(): CalculableObjectTransfer
     {
         $expenseTransfers = [
@@ -390,12 +335,6 @@ class ShipmentBusinessTester extends Actor
             ->build();
     }
 
-    /**
-     * @param int $idSalesOrder
-     * @param int $idSalesShipment
-     *
-     * @return void
-     */
     public function updateSalesOrderItemsWithIdSalesShipmentForOrder(int $idSalesOrder, int $idSalesShipment): void
     {
         $salesOrderItemEntities = $this->getSalesOrderItemQuery()
@@ -408,11 +347,6 @@ class ShipmentBusinessTester extends Actor
         }
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return void
-     */
     public function setShipmentToSalesOrder(int $idSalesOrder): void
     {
         $shipmentTransfer = $this->haveShipment($idSalesOrder);
@@ -422,21 +356,11 @@ class ShipmentBusinessTester extends Actor
         );
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem|null
-     */
     public function findSalesOrderItemEntity(int $idSalesOrder): ?SpySalesOrderItem
     {
         return $this->getSalesOrderItemQuery()->filterByFkSalesOrder($idSalesOrder)->findOne();
     }
 
-    /**
-     * @param int $idSalesOrder
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment|null
-     */
     public function findSalesShipmentEntity(int $idSalesOrder): ?SpySalesShipment
     {
         return $this->getSalesShipmentQuery()->filterByFkSalesOrder($idSalesOrder)->findOne();
@@ -463,36 +387,21 @@ class ShipmentBusinessTester extends Actor
         return $expenseTransfers;
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItemQuery
-     */
     protected function getSalesOrderItemQuery(): SpySalesOrderItemQuery
     {
         return SpySalesOrderItemQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipmentQuery
-     */
     protected function getSalesShipmentQuery(): SpySalesShipmentQuery
     {
         return SpySalesShipmentQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesExpenseQuery
-     */
     protected function getSalesExpenseQuery(): SpySalesExpenseQuery
     {
         return SpySalesExpenseQuery::create();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param string $pricePluginDependencyKey
-     *
-     * @return void
-     */
     public function assignShipmentPricePluginToShipmentMethod(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         string $pricePluginDependencyKey
@@ -504,9 +413,6 @@ class ShipmentBusinessTester extends Actor
         $shipmentMethodEntity->save();
     }
 
-    /**
-     * @return \Orm\Zed\Shipment\Persistence\SpyShipmentMethodQuery
-     */
     protected function getShipmentMethodQuery(): SpyShipmentMethodQuery
     {
         return SpyShipmentMethodQuery::create();

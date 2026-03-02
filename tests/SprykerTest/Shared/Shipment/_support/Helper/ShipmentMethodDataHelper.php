@@ -54,14 +54,6 @@ class ShipmentMethodDataHelper extends Module
      */
     protected static $idCurrencyCache = [];
 
-    /**
-     * @param array $overrideShipmentMethod
-     * @param array $overrideCarrier
-     * @param array $priceList
-     * @param array $idStoreList
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     public function haveShipmentMethod(
         array $overrideShipmentMethod = [],
         array $overrideCarrier = [],
@@ -99,9 +91,6 @@ class ShipmentMethodDataHelper extends Module
         return $shipmentMethodTransfer;
     }
 
-    /**
-     * @return void
-     */
     public function ensureShipmentMethodTableIsEmpty(): void
     {
         SpyShipmentMethodPriceQuery::create()->deleteAll();
@@ -109,12 +98,6 @@ class ShipmentMethodDataHelper extends Module
         SpyShipmentMethodQuery::create()->deleteAll();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param array $overrideCarrier
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer
-     */
     protected function assertCarrier(ShipmentMethodTransfer $shipmentMethodTransfer, array $overrideCarrier): ShipmentMethodTransfer
     {
         if ($shipmentMethodTransfer->getFkShipmentCarrier()) {
@@ -140,11 +123,6 @@ class ShipmentMethodDataHelper extends Module
         return $this->getModule(static::NAMESPACE_ROOT . ShipmentCarrierDataHelper::class);
     }
 
-    /**
-     * @param string $currencyIsoCode
-     *
-     * @return int
-     */
     protected function getIdCurrencyByIsoCode(string $currencyIsoCode): int
     {
         if (!isset(static::$idCurrencyCache[$currencyIsoCode])) {
@@ -156,11 +134,6 @@ class ShipmentMethodDataHelper extends Module
         return static::$idCurrencyCache[$currencyIsoCode];
     }
 
-    /**
-     * @param string $storeName
-     *
-     * @return int
-     */
     protected function getIdStoreByName(string $storeName): int
     {
         if (static::$idStoreCache === null) {
@@ -170,9 +143,6 @@ class ShipmentMethodDataHelper extends Module
         return static::$idStoreCache[$storeName];
     }
 
-    /**
-     * @return void
-     */
     protected function loadStoreCache(): void
     {
         static::$idStoreCache = [];
@@ -181,25 +151,16 @@ class ShipmentMethodDataHelper extends Module
         }
     }
 
-    /**
-     * @return \Spryker\Zed\Currency\Business\CurrencyFacadeInterface
-     */
     protected function getCurrencyFacade(): CurrencyFacadeInterface
     {
         return $this->getLocator()->currency()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\Store\Business\StoreFacadeInterface
-     */
     protected function getStoreFacade(): StoreFacadeInterface
     {
         return $this->getLocator()->store()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\Shipment\Business\ShipmentFacadeInterface
-     */
     protected function getShipmentFacade(): ShipmentFacadeInterface
     {
         return $this->getLocator()->shipment()->facade();

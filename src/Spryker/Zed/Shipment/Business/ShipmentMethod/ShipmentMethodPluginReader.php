@@ -17,17 +17,11 @@ class ShipmentMethodPluginReader implements ShipmentMethodPluginReaderInterface
      */
     protected $plugins;
 
-    /**
-     * @param array $plugins
-     */
     public function __construct(array $plugins)
     {
         $this->plugins = $plugins;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer
-     */
     public function getShipmentMethodPlugins(): ShipmentMethodPluginCollectionTransfer
     {
         $shipmentMethodPluginCollectionTransfer = new ShipmentMethodPluginCollectionTransfer();
@@ -38,11 +32,6 @@ class ShipmentMethodPluginReader implements ShipmentMethodPluginReaderInterface
         return $shipmentMethodPluginCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer
-     */
     protected function addAvailabilityPlugins(
         ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer
     ): ShipmentMethodPluginCollectionTransfer {
@@ -53,11 +42,6 @@ class ShipmentMethodPluginReader implements ShipmentMethodPluginReaderInterface
         return $shipmentMethodPluginCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer
-     */
     protected function addPricePlugins(ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer): ShipmentMethodPluginCollectionTransfer
     {
         foreach ($this->plugins[ShipmentDependencyProvider::PRICE_PLUGINS] as $name => $plugin) {
@@ -67,11 +51,6 @@ class ShipmentMethodPluginReader implements ShipmentMethodPluginReaderInterface
         return $shipmentMethodPluginCollectionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer
-     */
     protected function addDeliveryTimePlugins(
         ShipmentMethodPluginCollectionTransfer $shipmentMethodPluginCollectionTransfer
     ): ShipmentMethodPluginCollectionTransfer {

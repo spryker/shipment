@@ -81,9 +81,6 @@ class ShipmentPersistenceWithAddressesTest extends Unit
         }
     }
 
-    /**
-     * @return array
-     */
     public function shipmentOrderSaverShouldUseMultipleShipmentsWithMultipleShipmentAddressesDataProvider(): array
     {
         return [
@@ -92,9 +89,6 @@ class ShipmentPersistenceWithAddressesTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAndShippingAddressesAnd1ItemToFrance(): array
     {
         $addressBuilder = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));
@@ -118,9 +112,6 @@ class ShipmentPersistenceWithAddressesTest extends Unit
         return [$quoteTransfer, 1];
     }
 
-    /**
-     * @return array
-     */
     protected function getDataWithMultipleShipmentsAndShippingAddressesAnd2ItemsToFranceAnd1ItemToGermany(): array
     {
         $addressBuilder1 = (new AddressBuilder([AddressTransfer::ISO2_CODE => 'FR']));

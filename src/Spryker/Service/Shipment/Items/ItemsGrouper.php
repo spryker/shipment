@@ -24,9 +24,6 @@ class ItemsGrouper implements ItemsGrouperInterface
      */
     protected $shipmentHashGenerator;
 
-    /**
-     * @param \Spryker\Service\Shipment\ShipmentHash\ShipmentHashGeneratorInterface $shipmentHashGenerator
-     */
     public function __construct(ShipmentHashGeneratorInterface $shipmentHashGenerator)
     {
         $this->shipmentHashGenerator = $shipmentHashGenerator;
@@ -59,22 +56,11 @@ class ItemsGrouper implements ItemsGrouperInterface
         return new ArrayObject(array_values($shipmentGroupTransfers));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return void
-     */
     protected function assertRequiredShipment(ItemTransfer $itemTransfer): void
     {
         $itemTransfer->requireShipment();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     * @param string $shipmentHashKey
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function createShipmentGroupTransferWithListedItems(
         ItemTransfer $itemTransfer,
         string $shipmentHashKey

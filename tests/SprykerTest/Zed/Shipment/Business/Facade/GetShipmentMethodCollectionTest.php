@@ -46,9 +46,6 @@ class GetShipmentMethodCollectionTest extends Unit
      */
     protected ShipmentBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -56,9 +53,6 @@ class GetShipmentMethodCollectionTest extends Unit
         $this->tester->ensureShipmentMethodTableIsEmpty();
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByIdShipmentMethod(): void
     {
         // Arrange
@@ -81,9 +75,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByIdShipmentCarrier(): void
     {
         // Arrange
@@ -109,9 +100,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByIsActiveStatus(): void
     {
         // Arrange
@@ -138,9 +126,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByIsActiveShipmentCarrierStatus(): void
     {
         // Arrange
@@ -173,9 +158,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByStoreName(): void
     {
         // Arrange
@@ -200,9 +182,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodByStoreNamesWithoutDuplicates(): void
     {
         // Arrange
@@ -230,9 +209,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsCorrectShipmentMethodsByStoreNamesWithoutDuplicates(): void
     {
         // Arrange
@@ -271,9 +247,6 @@ class GetShipmentMethodCollectionTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsShipmentMethodsPaginatedByLimitAndOffset(): void
     {
         // Arrange
@@ -297,9 +270,6 @@ class GetShipmentMethodCollectionTest extends Unit
         $this->assertSame(4, $shipmentMethodCollectionTransfer->getPaginationOrFail()->getNbResults());
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsShipmentMethodsPaginatedByPageAndMaxPerPage(): void
     {
         // Arrange
@@ -335,9 +305,6 @@ class GetShipmentMethodCollectionTest extends Unit
         $this->assertSame(1, $paginationTransfer->getPreviousPageOrFail());
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsShipmentMethodsSortedByKeyFieldDesc(): void
     {
         // Arrange
@@ -362,9 +329,6 @@ class GetShipmentMethodCollectionTest extends Unit
         $this->assertSame('abc', $shipmentMethodCollectionIterator->offsetGet(2)->getShipmentMethodKey());
     }
 
-    /**
-     * @return void
-     */
     public function testReturnsShipmentMethodsSortedByKeyFieldAsc(): void
     {
         // Arrange
@@ -389,12 +353,6 @@ class GetShipmentMethodCollectionTest extends Unit
         $this->assertSame('ghi', $shipmentMethodCollectionIterator->offsetGet(2)->getShipmentMethodKey());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     protected function findShipmentMethodTransferInShipmentMethodCollectionTransfer(
         ShipmentMethodCollectionTransfer $shipmentMethodCollectionTransfer,
         int $idShipmentMethod

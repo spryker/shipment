@@ -27,13 +27,6 @@ class MethodAvailabilityChecker implements MethodAvailabilityCheckerInterface
         $this->shipmentMethodAvailabilityPlugins = $shipmentMethodAvailabilityPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return bool
-     */
     public function isShipmentMethodAvailableForShipmentGroup(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,
@@ -55,11 +48,6 @@ class MethodAvailabilityChecker implements MethodAvailabilityCheckerInterface
         return $availabilityPlugin->isAvailable($shipmentGroupTransfer, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     protected function isSetAvailabilityPlugin(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         return isset($this->shipmentMethodAvailabilityPlugins[$shipmentMethodTransfer->getAvailabilityPlugin()]);

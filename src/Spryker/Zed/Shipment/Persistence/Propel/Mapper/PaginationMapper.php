@@ -12,12 +12,6 @@ use Propel\Runtime\Util\PropelModelPager;
 
 class PaginationMapper
 {
-    /**
-     * @param \Propel\Runtime\Util\PropelModelPager $propelModelPager
-     * @param \Generated\Shared\Transfer\PaginationTransfer $paginationTransfer
-     *
-     * @return \Generated\Shared\Transfer\PaginationTransfer
-     */
     public function mapPropelModelPagerToPaginationTransfer(
         PropelModelPager $propelModelPager,
         PaginationTransfer $paginationTransfer

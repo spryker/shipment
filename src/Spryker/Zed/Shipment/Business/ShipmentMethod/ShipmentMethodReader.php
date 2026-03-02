@@ -37,11 +37,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
      */
     protected static $currencyCache = [];
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentRepositoryInterface $shipmentRepository
-     * @param \Spryker\Zed\Shipment\Dependency\Facade\ShipmentToCurrencyInterface $currencyFacade
-     * @param \Spryker\Zed\Shipment\Business\Expander\ShipmentMethodExpanderInterface $shipmentMethodExpander
-     */
     public function __construct(
         ShipmentRepositoryInterface $shipmentRepository,
         ShipmentToCurrencyInterface $currencyFacade,
@@ -52,11 +47,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
         $this->shipmentMethodExpander = $shipmentMethodExpander;
     }
 
-    /**
-     * @param int $idShipmentMethod
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodById(int $idShipmentMethod): ?ShipmentMethodTransfer
     {
         $shipmentMethodTransfer = $this->shipmentRepository
@@ -76,11 +66,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
         return $this->shipmentMethodExpander->expandShipmentMethodTransfer($shipmentMethodTransfer);
     }
 
-    /**
-     * @param string $shipmentMethodName
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByName(string $shipmentMethodName): ?ShipmentMethodTransfer
     {
         $shipmentMethodTransfer = $this->shipmentRepository->findShipmentMethodByName($shipmentMethodName);
@@ -91,11 +76,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
         return $this->shipmentMethodExpander->expandShipmentMethodTransfer($shipmentMethodTransfer);
     }
 
-    /**
-     * @param string $shipmentMethodKey
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodTransfer|null
-     */
     public function findShipmentMethodByKey(string $shipmentMethodKey): ?ShipmentMethodTransfer
     {
         $shipmentMethodTransfer = $this->shipmentRepository->findShipmentMethodByKey($shipmentMethodKey);
@@ -116,11 +96,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
         return $this->shipmentMethodExpander->expandShipmentMethodTransfers($shipmentMethodTransfers);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentMethodCollectionTransfer
-     */
     public function getShipmentMethodCollection(ShipmentMethodCriteriaTransfer $shipmentMethodCriteriaTransfer): ShipmentMethodCollectionTransfer
     {
         $shipmentMethodsCollectionTransfer = $this->shipmentRepository->getShipmentMethodCollection($shipmentMethodCriteriaTransfer);
@@ -128,12 +103,6 @@ class ShipmentMethodReader implements ShipmentMethodReaderInterface
         return $this->shipmentMethodExpander->expandShipmentMethodCollectionTransfer($shipmentMethodsCollectionTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     * @param int $idCurrency
-     *
-     * @return void
-     */
     protected function setCurrencyToMoneyValue(
         MoneyValueTransfer $moneyValueTransfer,
         int $idCurrency

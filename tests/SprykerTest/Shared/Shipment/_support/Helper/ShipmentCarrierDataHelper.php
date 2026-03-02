@@ -17,11 +17,6 @@ class ShipmentCarrierDataHelper extends Module
 {
     use LocatorHelperTrait;
 
-    /**
-     * @param array $override
-     *
-     * @return \Generated\Shared\Transfer\ShipmentCarrierTransfer
-     */
     public function haveShipmentCarrier(array $override = []): ShipmentCarrierTransfer
     {
         /** @var \Generated\Shared\Transfer\ShipmentCarrierTransfer $shipmentCarrierTransfer */
@@ -33,9 +28,6 @@ class ShipmentCarrierDataHelper extends Module
         return $shipmentCarrierTransfer;
     }
 
-    /**
-     * @return \Spryker\Zed\Shipment\Business\ShipmentFacadeInterface
-     */
     protected function getShipmentFacade(): ShipmentFacadeInterface
     {
         return $this->getLocator()->shipment()->facade();

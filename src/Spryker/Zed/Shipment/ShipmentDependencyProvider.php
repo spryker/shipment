@@ -103,11 +103,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addAvailabilityPlugins(Container $container): Container
     {
         $container->set(static::AVAILABILITY_PLUGINS, function (Container $container) {
@@ -117,11 +112,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPricePlugins(Container $container): Container
     {
         $container->set(static::PRICE_PLUGINS, function (Container $container) {
@@ -131,11 +121,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addDeliveryTimePlugins(Container $container): Container
     {
         $container->set(static::DELIVERY_TIME_PLUGINS, function (Container $container) {
@@ -145,11 +130,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSalesFacade(Container $container): Container
     {
         $container->set(static::FACADE_SALES, function (Container $container) {
@@ -187,11 +167,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceFacade(Container $container): Container
     {
         $container->set(static::FACADE_PRICE, function (Container $container) {
@@ -201,11 +176,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addCalculationFacade(Container $container): Container
     {
         $container->set(static::FACADE_CALCULATION, function (Container $container) {
@@ -215,11 +185,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addShipmentService(Container $container): Container
     {
         $container->set(static::SERVICE_SHIPMENT, function (Container $container) {
@@ -285,11 +250,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addShipmentExpenseExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_SHIPMENT_EXPENSE_EXPANDER, function () {
@@ -299,11 +259,6 @@ class ShipmentDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addShipmentMethodCollectionExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_SHIPMENT_METHOD_COLLECTION_EXPANDER, function () {

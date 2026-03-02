@@ -25,46 +25,16 @@ interface ShipmentToSalesFacadeInterface
      */
     public function getOrderByIdSalesOrder(int $idSalesOrder): OrderTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderFilterTransfer $orderFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function getOrder(OrderFilterTransfer $orderFilterTransfer): OrderTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     public function createOrderAddress(AddressTransfer $addressTransfer): AddressTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function createSalesExpense(ExpenseTransfer $expenseTransfer): ExpenseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function updateSalesExpense(ExpenseTransfer $expenseTransfer): ExpenseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     public function expandWithCustomerOrSalesAddress(AddressTransfer $addressTransfer): AddressTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesExpenseCollectionDeleteCriteriaTransfer $salesExpenseCollectionDeleteCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesExpenseCollectionResponseTransfer
-     */
     public function deleteSalesExpenseCollection(
         SalesExpenseCollectionDeleteCriteriaTransfer $salesExpenseCollectionDeleteCriteriaTransfer
     ): SalesExpenseCollectionResponseTransfer;

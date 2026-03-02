@@ -17,11 +17,6 @@ use Spryker\Shared\Shipment\ShipmentConfig;
  */
 class ShipmentExpenseFilter implements ShipmentExpenseFilterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\CalculableObjectTransfer $calculableObjectTransfer
-     *
-     * @return void
-     */
     public function filterObsoleteShipmentExpenses(CalculableObjectTransfer $calculableObjectTransfer): void
     {
         $quoteTransfer = $calculableObjectTransfer->getOriginalQuote();
@@ -51,11 +46,6 @@ class ShipmentExpenseFilter implements ShipmentExpenseFilterInterface
         return $filteredExpenseTransferCollection;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return bool
-     */
     protected function isShipmentMethodSet(QuoteTransfer $quoteTransfer): bool
     {
         $shipmentTransfer = $quoteTransfer->getShipment();

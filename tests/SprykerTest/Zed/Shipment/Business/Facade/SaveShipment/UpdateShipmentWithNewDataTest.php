@@ -39,9 +39,6 @@ class UpdateShipmentWithNewDataTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testUpdateShipmentWithNewShippingAddress(): void
     {
         // Arrange
@@ -72,9 +69,6 @@ class UpdateShipmentWithNewDataTest extends Unit
         $this->assertNotEquals($expectedIdSalesOrderAddress, $shipmentEntity->getFkSalesOrderAddress(), 'The sales shipment should have been a new sales order address assigned.');
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateShipmentWithNewShipmentMethod(): void
     {
         // Arrange
@@ -108,9 +102,6 @@ class UpdateShipmentWithNewDataTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testUpdateShipmentWithNewDeliveryDate(): void
     {
         // Arrange
@@ -142,9 +133,6 @@ class UpdateShipmentWithNewDataTest extends Unit
         $this->assertNotEquals($expectedDeliveryDate, $shipmentEntity->getRequestedDeliveryDate(), 'The shipment should have been updated with new delivery date.');
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     protected function createQuoteTransfer(): QuoteTransfer
     {
         return (new QuoteBuilder([

@@ -11,9 +11,6 @@ use Generated\Shared\Transfer\StoreTransfer;
 
 interface ShipmentToStoreInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function getCurrentStore(): StoreTransfer;
 
     /**
@@ -21,10 +18,5 @@ interface ShipmentToStoreInterface
      */
     public function getAllStores(): array;
 
-    /**
-     * @param string $storeName
-     *
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     public function getStoreByName(string $storeName): StoreTransfer;
 }

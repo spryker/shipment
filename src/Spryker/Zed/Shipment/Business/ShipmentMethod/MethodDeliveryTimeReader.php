@@ -27,13 +27,6 @@ class MethodDeliveryTimeReader implements MethodDeliveryTimeReaderInterface
         $this->shipmentMethodDeliveryTimePlugins = $shipmentMethodDeliveryTimePlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer|null $shipmentGroupTransfer
-     *
-     * @return int|null
-     */
     public function getDeliveryTimeForShippingGroup(
         ShipmentMethodTransfer $shipmentMethodTransfer,
         QuoteTransfer $quoteTransfer,
@@ -58,11 +51,6 @@ class MethodDeliveryTimeReader implements MethodDeliveryTimeReaderInterface
         return $deliveryTimePlugin->getTime($shipmentGroupTransfer, $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentMethodTransfer $shipmentMethodTransfer
-     *
-     * @return bool
-     */
     protected function issetDeliveryTimePlugin(ShipmentMethodTransfer $shipmentMethodTransfer): bool
     {
         return isset($this->shipmentMethodDeliveryTimePlugins[$shipmentMethodTransfer->getDeliveryTimePlugin()]);

@@ -41,61 +41,31 @@ class ShipmentToSalesFacadeBridge implements ShipmentToSalesFacadeInterface
         return $this->salesFacade->getOrderByIdSalesOrder($idSalesOrder);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderFilterTransfer $orderFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function getOrder(OrderFilterTransfer $orderFilterTransfer): OrderTransfer
     {
         return $this->salesFacade->getOrder($orderFilterTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     public function createOrderAddress(AddressTransfer $addressTransfer): AddressTransfer
     {
         return $this->salesFacade->createOrderAddress($addressTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function createSalesExpense(ExpenseTransfer $expenseTransfer): ExpenseTransfer
     {
         return $this->salesFacade->createSalesExpense($expenseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function updateSalesExpense(ExpenseTransfer $expenseTransfer): ExpenseTransfer
     {
         return $this->salesFacade->updateSalesExpense($expenseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\AddressTransfer $addressTransfer
-     *
-     * @return \Generated\Shared\Transfer\AddressTransfer
-     */
     public function expandWithCustomerOrSalesAddress(AddressTransfer $addressTransfer): AddressTransfer
     {
         return $this->salesFacade->expandWithCustomerOrSalesAddress($addressTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesExpenseCollectionDeleteCriteriaTransfer $salesExpenseCollectionDeleteCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesExpenseCollectionResponseTransfer
-     */
     public function deleteSalesExpenseCollection(
         SalesExpenseCollectionDeleteCriteriaTransfer $salesExpenseCollectionDeleteCriteriaTransfer
     ): SalesExpenseCollectionResponseTransfer {

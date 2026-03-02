@@ -11,8 +11,5 @@ use Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer;
 
 interface ShipmentMethodPluginReaderInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\ShipmentMethodPluginCollectionTransfer
-     */
     public function getShipmentMethodPlugins(): ShipmentMethodPluginCollectionTransfer;
 }

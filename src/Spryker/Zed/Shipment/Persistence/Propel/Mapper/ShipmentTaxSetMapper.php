@@ -12,12 +12,6 @@ use Orm\Zed\Tax\Persistence\SpyTaxSet;
 
 class ShipmentTaxSetMapper implements ShipmentTaxSetMapperInterface
 {
-    /**
-     * @param \Orm\Zed\Tax\Persistence\SpyTaxSet $taxSetEntity
-     * @param \Generated\Shared\Transfer\TaxSetTransfer $taxSetTransfer
-     *
-     * @return \Generated\Shared\Transfer\TaxSetTransfer
-     */
     public function mapTaxSetEntityToTaxSetTransfer(SpyTaxSet $taxSetEntity, TaxSetTransfer $taxSetTransfer): TaxSetTransfer
     {
         $taxSetTransfer->fromArray($taxSetEntity->toArray(), true);

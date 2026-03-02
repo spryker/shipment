@@ -89,12 +89,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     public function saveSalesOrderShipment(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): void
     {
         $this->assertShipmentRequirements($quoteTransfer->getItems());
@@ -104,13 +98,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     public function saveOrderShipmentByShipmentGroup(
         OrderTransfer $orderTransfer,
         ShipmentGroupTransfer $shipmentGroupTransfer,
@@ -152,12 +139,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return void
-     */
     protected function saveSalesOrderShipmentTransaction(QuoteTransfer $quoteTransfer, SaveOrderTransfer $saveOrderTransfer): void
     {
         $orderTransfer = $this->getOrderTransfer($saveOrderTransfer, $quoteTransfer);
@@ -174,13 +155,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         $this->addShipmentToQuoteItems($shipmentGroups->getArrayCopy(), $quoteTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentGroupTransfer
-     */
     protected function saveSalesShipment(
         OrderTransfer $orderTransfer,
         ShipmentGroupTransfer $shipmentGroupTransfer,
@@ -293,11 +267,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         return $shipmentGroupTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ShipmentTransfer
-     */
     protected function saveSalesOrderAddress(ShipmentTransfer $shipmentTransfer): ShipmentTransfer
     {
         $shippingAddressTransfer = $shipmentTransfer->requireShippingAddress()->getShippingAddress();
@@ -308,12 +277,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         return $shipmentTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function addShipmentExpensesFromQuoteToOrder(
         QuoteTransfer $quoteTransfer,
         OrderTransfer $orderTransfer
@@ -327,13 +290,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         return $orderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     protected function saveShipmentExpense(
         ExpenseTransfer $expenseTransfer,
         SaveOrderTransfer $saveOrderTransfer,
@@ -351,12 +307,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         return $this->salesFacade->createSalesExpense($expenseTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ExpenseTransfer $expenseTransfer
-     * @param \Generated\Shared\Transfer\ShipmentGroupTransfer $shipmentGroupTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     protected function executeShipmentExpenseExpanderPlugins(ExpenseTransfer $expenseTransfer, ShipmentGroupTransfer $shipmentGroupTransfer): ExpenseTransfer
     {
         foreach ($this->shipmentExpenseExpanderPlugins as $shipmentExpenseExpanderPlugin) {
@@ -380,12 +330,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $salesOrderTransfer
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer|null
-     */
     protected function findShipmentExpense(
         OrderTransfer $salesOrderTransfer,
         ShipmentTransfer $shipmentTransfer
@@ -406,12 +350,6 @@ class MultiShipmentOrderSaver implements MultiShipmentOrderSaverInterface
         return null;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function getOrderTransfer(SaveOrderTransfer $saveOrderTransfer, QuoteTransfer $quoteTransfer): OrderTransfer
     {
         if ($saveOrderTransfer->getOrder() !== null && $saveOrderTransfer->getOrder()->getShippingAddress() !== null) {

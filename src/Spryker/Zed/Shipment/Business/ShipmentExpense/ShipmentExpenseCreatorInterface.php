@@ -13,12 +13,6 @@ use Generated\Shared\Transfer\ShipmentTransfer;
 
 interface ShipmentExpenseCreatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTransfer $shipmentTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\ExpenseTransfer
-     */
     public function createShippingExpenseTransfer(
         ShipmentTransfer $shipmentTransfer,
         OrderTransfer $orderTransfer

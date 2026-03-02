@@ -13,23 +13,11 @@ use Orm\Zed\Sales\Persistence\SpySalesShipment;
 
 interface ShipmentOrderMapperInterface
 {
-    /**
-     * @param \Orm\Zed\Sales\Persistence\SpySalesOrder $salesOrderEntity
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     public function mapSalesOrderEntityToOrderTransfer(
         SpySalesOrder $salesOrderEntity,
         OrderTransfer $orderTransfer
     ): OrderTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     * @param \Orm\Zed\Sales\Persistence\SpySalesShipment $salesShipmentEntity
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment
-     */
     public function mapOrderTransferToShipmentEntity(
         OrderTransfer $orderTransfer,
         SpySalesShipment $salesShipmentEntity

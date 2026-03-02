@@ -19,9 +19,6 @@ class MethodPrice implements MethodPriceInterface
      */
     protected $queryContainer;
 
-    /**
-     * @param \Spryker\Zed\Shipment\Persistence\ShipmentQueryContainerInterface $queryContainer
-     */
     public function __construct(ShipmentQueryContainerInterface $queryContainer)
     {
         $this->queryContainer = $queryContainer;
