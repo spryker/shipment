@@ -12,6 +12,8 @@ use Spryker\Shared\Kernel\AbstractSharedConfig;
 class ShipmentConfig extends AbstractSharedConfig
 {
     /**
+     * @api
+     *
      * @var string
      */
     public const SHIPMENT_METHOD_NAME_NO_SHIPMENT = 'NoShipment';
